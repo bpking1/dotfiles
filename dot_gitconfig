@@ -1,0 +1,14 @@
+[filter "lfs"]
+	process = git-lfs filter-process
+	required = true
+	clean = git-lfs clean -- %f
+	smudge = git-lfs smudge -- %f
+[user]
+	email = yihe.hejie@gmail.com
+	name = bpking1
+[core]
+	editor = nvim
+[safe]
+	directory = /opt/flutter
+[init]
+	defaultBranch = main
