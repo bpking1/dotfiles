@@ -1,0 +1,178 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<content>
+    <logflag>0</logflag>
+    <advanced_ppc_logging>false</advanced_ppc_logging>
+    <mlc_path></mlc_path>
+    <permanent_storage>true</permanent_storage>
+    <language>129</language>
+    <use_discord_presence>true</use_discord_presence>
+    <fullscreen_menubar>false</fullscreen_menubar>
+    <check_update>false</check_update>
+    <save_screenshot>true</save_screenshot>
+    <vk_warning>false</vk_warning>
+    <gp_download>true</gp_download>
+    <macos_disclaimer>false</macos_disclaimer>
+    <fullscreen>false</fullscreen>
+    <proxy_server></proxy_server>
+    <disable_screensaver>true</disable_screensaver>
+    <console_language>6</console_language>
+    <window_position>
+        <x>-1</x>
+        <y>-1</y>
+    </window_position>
+    <window_size>
+        <x>-1</x>
+        <y>-1</y>
+    </window_size>
+    <window_maximized>false</window_maximized>
+    <open_pad>false</open_pad>
+    <pad_position>
+        <x>-1</x>
+        <y>-1</y>
+    </pad_position>
+    <pad_size>
+        <x>-1</x>
+        <y>-1</y>
+    </pad_size>
+    <pad_maximized>false</pad_maximized>
+    <GameList>
+        <style>0</style>
+        <order></order>
+        <name_width>500</name_width>
+        <version_width>60</version_width>
+        <dlc_width>50</dlc_width>
+        <game_time_width>140</game_time_width>
+        <game_started_width>160</game_started_width>
+        <region_width>930</region_width>
+    </GameList>
+    <RecentLaunchFiles>
+        <Entry>/home/hj/.local/share/Cemu/games/BotW</Entry>
+    </RecentLaunchFiles>
+    <RecentNFCFiles/>
+    <GamePaths>
+        <Entry>/home/hj/.local/share/Cemu/games</Entry>
+    </GamePaths>
+    <GameCache/>
+    <GraphicPack>
+        <Entry filename="graphicPacks/downloadedGraphicPacks/SkylandersSwapForce/Workarounds/PortalStabilityFix/rules.txt"/>
+        <Entry filename="graphicPacks/downloadedGraphicPacks/BreathOfTheWild/Mods/ExtendedMemory/rules.txt"/>
+        <Entry filename="graphicPacks/downloadedGraphicPacks/KirbyRainbow_InvisibleLineFix/rules.txt"/>
+        <Entry filename="graphicPacks/downloadedGraphicPacks/BreathOfTheWild/Graphics/rules.txt">
+            <Preset>
+                <category>Aspect Ratio</category>
+                <preset>16:9 (Default)</preset>
+            </Preset>
+            <Preset>
+                <category>Resolution</category>
+                <preset>1920x1080 (Full HD)</preset>
+            </Preset>
+            <Preset>
+                <category>Shadow Draw Distance</category>
+                <preset>High (Default)</preset>
+            </Preset>
+            <Preset>
+                <category>Ultrawide HUD Mode</category>
+                <preset>Edge HUD (Default)</preset>
+            </Preset>
+            <Preset>
+                <category>Anti-Aliasing</category>
+                <preset>Normal FXAA (Default)</preset>
+            </Preset>
+            <Preset>
+                <category>Shadows</category>
+                <preset>Medium (100%, Default)</preset>
+            </Preset>
+        </Entry>
+        <Entry filename="graphicPacks/downloadedGraphicPacks/BreathOfTheWild/Mods/FPS++/rules.txt">
+            <Preset>
+                <category>Mode</category>
+                <preset>Normal Settings</preset>
+            </Preset>
+            <Preset>
+                <category>FPS Limit</category>
+                <preset>60FPS Limit (Default)</preset>
+            </Preset>
+            <Preset>
+                <category>Debug Options</category>
+                <preset>Disabled (Default)</preset>
+            </Preset>
+            <Preset>
+                <category>Framerate Limit</category>
+                <preset>60FPS (ideal for 240/120/60Hz displays)</preset>
+            </Preset>
+            <Preset>
+                <category>Cutscene FPS Limit</category>
+                <preset>Automatically Limit In Few Cutscenes (Recommended)</preset>
+            </Preset>
+            <Preset>
+                <category>Fence Type</category>
+                <preset>Performance Fence (Default)</preset>
+            </Preset>
+            <Preset>
+                <category>Static Mode</category>
+                <preset>Disabled (Default, dynamically adjust game speed)</preset>
+            </Preset>
+            <Preset>
+                <category>Frame Average</category>
+                <preset>8 Frames Averaged (Default)</preset>
+            </Preset>
+        </Entry>
+    </GraphicPack>
+    <Graphic>
+        <api>1</api>
+        <device>49a6eb76c620185b8fd73f3279891699</device>
+        <VSync>0</VSync>
+        <GX2DrawdoneSync>true</GX2DrawdoneSync>
+        <UpscaleFilter>1</UpscaleFilter>
+        <DownscaleFilter>0</DownscaleFilter>
+        <FullscreenScaling>1</FullscreenScaling>
+        <AsyncCompile>true</AsyncCompile>
+        <vkAccurateBarriers>true</vkAccurateBarriers>
+        <Overlay>
+            <Position>0</Position>
+            <TextColor>4294967295</TextColor>
+            <TextScale>100</TextScale>
+            <FPS>true</FPS>
+            <DrawCalls>false</DrawCalls>
+            <CPUUsage>false</CPUUsage>
+            <CPUPerCoreUsage>false</CPUPerCoreUsage>
+            <RAMUsage>false</RAMUsage>
+            <VRAMUsage>false</VRAMUsage>
+            <Debug>false</Debug>
+        </Overlay>
+        <Notification>
+            <Position>1</Position>
+            <TextColor>4294967295</TextColor>
+            <TextScale>100</TextScale>
+            <ControllerProfiles>true</ControllerProfiles>
+            <ControllerBattery>false</ControllerBattery>
+            <ShaderCompiling>false</ShaderCompiling>
+            <FriendService>true</FriendService>
+        </Notification>
+    </Graphic>
+    <Audio>
+        <api>3</api>
+        <delay>2</delay>
+        <TVChannels>1</TVChannels>
+        <PadChannels>1</PadChannels>
+        <InputChannels>0</InputChannels>
+        <TVVolume>50</TVVolume>
+        <PadVolume>0</PadVolume>
+        <InputVolume>50</InputVolume>
+        <TVDevice>alsa_output.pci-0000_00_1f.3.analog-stereo</TVDevice>
+        <PadDevice>alsa_output.pci-0000_00_1f.3.analog-stereo</PadDevice>
+        <InputDevice>alsa_output.pci-0000_00_1f.3.analog-stereo.monitor</InputDevice>
+    </Audio>
+    <Account>
+        <PersistentId>2147483649</PersistentId>
+        <OnlineEnabled>false</OnlineEnabled>
+        <ActiveService>0</ActiveService>
+    </Account>
+    <Debug>
+        <CrashDumpUnix>0</CrashDumpUnix>
+        <GDBPort>1337</GDBPort>
+    </Debug>
+    <Input>
+        <DSUC host="127.0.0.1" port="26760"/>
+    </Input>
+</content>

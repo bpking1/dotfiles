@@ -6,9 +6,14 @@
 [user]
 	email = yihe.hejie@gmail.com
 	name = bpking1
+	singingkey = A76C91EB86EC4FA9
 [core]
 	editor = nvim
 [safe]
 	directory = /opt/flutter
 [init]
 	defaultBranch = main
+[commit]
+	gpgsign = true
+[tag]
+	forcesignannotated = true
