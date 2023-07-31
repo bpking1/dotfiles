@@ -1,3 +1,7 @@
 [merge]
   command = "nvim"
   args = ["-d", "{{"{{ .Destination }}"}}", "{{"{{ .Source }}"}}", "{{"{{ .Target }}"}}"]
+
+encryption = "gpg"
+[gpg]
+  recipient="A76C91EB86EC4FA9"
