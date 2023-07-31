@@ -1,0 +1,10 @@
+[Unit]
+Description=Syncthing
+After=network-online.target
+
+[Service]
+Type=simple
+ExecStart=syncthing
+
+[Install]
+WantedBy=default.target
