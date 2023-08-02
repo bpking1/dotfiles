@@ -70,11 +70,11 @@ fi
 
 # add AUR
 if grep -q "archlinuxcn" /etc/pacman.conf; then
-    echo -e "$CNT - archlinuxcn already exists in pacman.conf. Skipping..."
+	echo -e "$CNT - archlinuxcn already exists in pacman.conf. Skipping..."
 else
-    echo -e "$CNT - add archlinuxcn..."
-    printf "[archlinuxcn] \nServer = https://mirrors.ustc.edu.cn/archlinuxcn/\$arch" | sudo tee -a /etc/pacman.conf
-    sudo pacman -Syu --noconfirm && sudo pacman -S --noconfirm archlinuxcn-keyring
+	echo -e "$CNT - add archlinuxcn..."
+	printf "[archlinuxcn] \nServer = https://mirrors.ustc.edu.cn/archlinuxcn/\$arch" | sudo tee -a /etc/pacman.conf
+	sudo pacman -Syu --noconfirm && sudo pacman -S --noconfirm archlinuxcn-keyring
 fi
 
 echo -e "$CNT - install yay"
@@ -161,7 +161,7 @@ install_software() {
 	done
 
 	# 等待用户输入
-  read -p "input number to not install,install all(a),install none(n): " input
+	read -p "input number to not install,install all(a),install none(n): " input
 
 	# 如果用户输入了软件编号，则取消这些软件的安装
 	if [[ ! -z "$input" ]]; then
@@ -192,50 +192,50 @@ install_software() {
 }
 # 安装软件
 base_software_list=(
-    intel-ucode # 微码 # amd: amd-ucode
-    fish    #bash
-    exa     # ls
-    neovim  #
-    bat     # cat
-    fd      # find
-    duf     # df
-    broot   # tree
-    ripgrep # grep
-    ncdu    # du     #ncdu --exclude /mnt
-    procs   # ps
-    dog     # dig
-    gping   # ping
-    fzf     # everything
-    jq      #
-    tldr    # man
-    docker
-    docker-buildx
-    docker-compose
-    lazydocker
-    git
-    lazygit
-    forgit
-    ranger # cli 文件浏览器
-    neofetch
-    htop  # top
-    aria2 # download
-    atuin # shell history
-    tssh  # ssh
-    rclone
-    #alist # docker 安装吧
-    syncthing
-    cronie    # crontab
-    starship  # cli prompt
-    z.lua     #  快速跳转文件夹
-    tmux      # screen
-    ctop      # docker top
-    downgrade # 包降级
-    progress  # 查看 cli进度
-    p7zip     # 7z
-    openssh
-    unzip
-    ntfs-3g # mount ntfs盘,手动mount吧
-    # fonts,emoji
+	intel-ucode # 微码 # amd: amd-ucode
+	fish        #bash
+	exa         # ls
+	neovim      #
+	bat         # cat
+	fd          # find
+	duf         # df
+	broot       # tree
+	ripgrep     # grep
+	ncdu        # du     #ncdu --exclude /mnt
+	procs       # ps
+	dog         # dig
+	gping       # ping
+	fzf         # everything
+	jq          #
+	tldr        # man
+	docker
+	docker-buildx
+	docker-compose
+	lazydocker
+	git
+	lazygit
+	forgit
+	ranger # cli 文件浏览器
+	neofetch
+	htop  # top
+	aria2 # download
+	atuin # shell history
+	tssh  # ssh
+	rclone
+	#alist # docker 安装吧
+	syncthing
+	cronie    # crontab
+	starship  # cli prompt
+	z.lua     #  快速跳转文件夹
+	tmux      # screen
+	ctop      # docker top
+	downgrade # 包降级
+	progress  # 查看 cli进度
+	p7zip     # 7z
+	openssh
+	unzip
+	ntfs-3g # mount ntfs盘,手动mount吧
+	# fonts,emoji
 	adobe-source-han-serif-cn-fonts
 	noto-fonts-cjk
 	noto-fonts-emoji
@@ -245,63 +245,68 @@ base_software_list=(
 
 )
 
-de_list = (
+de_list=(
 	# input method
-	fcitx5-im
+	# fcitx5-im
+	fcitx5
+	fcitx5-configtool
+	fcitx5-gtk
+	fcitx5-qt
 	fcitx5-chinese-addons
 	fcitx5-pinyin-zhwiki
 	fcitx5-pinyin-moegirl
-	fcitx5-pinyin-sougou
+	# fcitx5-pinyin-sougou # failed
 
 	kitty
-	sddm    #sddm-git
+	sddm #sddm-git
 	mpv
-  pavucontrol
+	pavucontrol
 )
-de_list_extra = (
 
-flatpak # flatpak install xx
-google-chrome-stable
-gtk4   # chrome wayland cjk input
-upower # for chrome 好像是检测电源的，跟省电模式有关?
-samba  # mount
-go-musicfox-git
-obsidian
-sunshine # moonlight server
-# moonlight, parsec
-obs-studio # kooha 也行
-telegram
-mpv-handler
-revda-git # 直播 douyu依赖nodejs
-visual-studio-code-bin
-dbeaver # sqlbrowser
-qemu
-# devpod # appimage , dev container local
-rider # dotnet dev
-dotnet-sdk-bin
-aspnet-runtime-bin
-go
-rust
-nodejs
-flutter
-mpd
-# v2raya, clash
-# 快捷搜索，翻译
-koodo-reader # reader
-# TaleBook     # calibre book docker
-QtScrcpy # android to pc
-sniffnet # network
-barrier  # 开源键鼠共享
-# localsend  # kdeconnect
-waydroid     # xdroid ,android container
-asciinema    # 终端录制工具
-virt-manager # qemu kvm 虚拟机管理
-waylyrics    # wayland 桌面歌词
-yt-dl        # video download
-# yuzu         # ns cemulater
-# pipewire etc.. # 由archinstall装了
-# xone-dongle-firmware # xbox 手柄无线
-# xow-git  # xbox
+de_list_extra=(
+
+	flatpak # flatpak install xx
+	google-chrome-stable
+	gtk4   # chrome wayland cjk input
+	upower # for chrome 好像是检测电源的，跟省电模式有关?
+	samba  # mount
+	go-musicfox-git
+	obsidian
+	sunshine # moonlight server
+	# moonlight, parsec
+	obs-studio # kooha 也行
+	telegram
+	mpv-handler
+	revda-git # 直播 douyu依赖nodejs
+	visual-studio-code-bin
+	dbeaver # sqlbrowser
+	qemu
+	# devpod # appimage , dev container local
+	rider # dotnet dev
+	dotnet-sdk-bin
+	aspnet-runtime-bin
+	go
+	rust
+	nodejs
+	flutter
+	mpd
+	# v2raya, clash
+	# 快捷搜索，翻译
+	koodo-reader # reader
+	# TaleBook     # calibre book docker
+	QtScrcpy # android to pc
+	sniffnet # network
+	barrier  # 开源键鼠共享
+	# localsend  # kdeconnect
+	waydroid     # xdroid ,android container
+	asciinema    # 终端录制工具
+	virt-manager # qemu kvm 虚拟机管理
+	waylyrics    # wayland 桌面歌词
+	yt-dl        # video download
+	# yuzu         # ns cemulater
+	# pipewire etc.. # 由archinstall装了
+	# xone-dongle-firmware # xbox 手柄无线
+	# xow-git  # xbox
 )
 
 #cutefish
@@ -311,25 +316,25 @@ amd_list=(mesa lib32-mesa xf86-video-amdgpu vulkan-radeon lib32-vulkan-radeon li
 intel_list=(mesa lib32-mesa vulkan-intel lib32-vulkan-intel intel-media-driver intel-hybrid-codec-driver)
 
 hyprland_list=(
-    hyprland
-    # hyprland-nvidia-git
-    xdg-desktop-portal-hyprland-git
-    qt5-wayland      # qt6 hypr会自动装
-    pamixer          # voice controll
-    polkit-kde-agent # agent
-    mako             # 系统通知
-    networkmanager
-    waybar-hyprland-git
-    rofi-lbonn-wayland-git  # 应用启动，粘贴板
-    cava          # cross-platform audio visualizer
-    grimblast-git # 截图
-    wl-clipboard  # 粘贴版，结合cliphist保持历史记录，rofi搜索
-    cliphist
-    xorg-xlsclients # 查看应用是否是 xwayland运行
-    nemo            # file explorer
-    imv             # 图片查看
-    swww            # 壁纸
-    #swayloc         #锁屏
+	hyprland
+	# hyprland-nvidia-git
+	xdg-desktop-portal-hyprland-git
+	qt5-wayland      # qt6 hypr会自动装
+	pamixer          # voice controll
+	polkit-kde-agent # agent
+	mako             # 系统通知
+	networkmanager
+	waybar-hyprland-git
+	rofi-lbonn-wayland-git # 应用启动，粘贴板
+	cava                   # cross-platform audio visualizer
+	grimblast-git          # 截图
+	wl-clipboard           # 粘贴版，结合cliphist保持历史记录，rofi搜索
+	cliphist
+	xorg-xlsclients # 查看应用是否是 xwayland运行
+	nemo            # file explorer
+	imv             # 图片查看
+	swww            # 壁纸
+	#swayloc         #锁屏
 )
 
 ### Install all of the above pacakges ####
@@ -342,21 +347,20 @@ if [[ $INST == "Y" || $INST == "y" ]]; then
 			install $SOFTWR
 		done
 
-		
-        # 视频加速
-        printf "NVD_BACKEND=direct \nLIBVA_DRIVER_NAME=nvidia" | sudo tee -a /etc/environment
-        
-        # update config
-        sudo sed -i 's/GRUB_CMDLINE_LINUX_DEFAULT="/& nvidia_drm.modeset=1 /' /etc/default/grub
-        sudo grub-mkconfig -o /boot/grub/grub.cfg
+		# 视频加速
+		printf "NVD_BACKEND=direct \nLIBVA_DRIVER_NAME=nvidia" | sudo tee -a /etc/environment
+
+		# update config
+		sudo sed -i 's/GRUB_CMDLINE_LINUX_DEFAULT="/& nvidia_drm.modeset=1 /' /etc/default/grub
+		sudo grub-mkconfig -o /boot/grub/grub.cfg
 
 		sudo sed -i 's/MODULES=()/MODULES=(nvidia nvidia_modeset nvidia_uvm nvidia_drm)/' /etc/mkinitcpio.conf
 		sudo mkinitcpio --config /etc/mkinitcpio.conf --generate /boot/initramfs-custom.img
 		echo -e "options nvidia-drm modeset=1" | sudo tee -a /etc/modprobe.d/nvidia.conf &>>$INSTLOG
 	fi
 
-    echo -e "$CNT - Stage 1 - Installing main components, this may take a while..."
-    install_software "${base_software_list[@]}"
+	echo -e "$CNT - Stage 1 - Installing main components, this may take a while..."
+	install_software "${base_software_list[@]}"
 	## Stage 1 - main components
 	#echo -e "$CNT - Stage 1 - Installing main components, this may take a while..."
 	#for SOFTWR in hyprland kitty waybar jq mako swww swaylock-effects wofi wlogout xdg-desktop-portal-hyprland swappy grim slurp thunar; do
@@ -373,7 +377,7 @@ if [[ $INST == "Y" || $INST == "y" ]]; then
 	read -rep $'[\e[1;33mACTION\e[0m] - Would you like to install hyprland? (y,n) ' INST_HYPR
 	if [[ $INST_HYPR == "Y" || $INST_HYPR == "y" ]]; then
 		echo -e "$CNT - Stage 3 - Installing hyprland, this may take a while..."
-    install_software "${hyprland_list[@]}"
+		install_software "${hyprland_list[@]}"
 		# sddm auto login config
 		sudo mkdir -p /etc/sddm.conf.d
 		echo -e "[Autologin]\nUser=hj\nSession=hyprland.desktop" | sudo tee -a /etc/sddm.conf.d/autologin.conf
@@ -384,10 +388,10 @@ if [[ $INST == "Y" || $INST == "y" ]]; then
 		else
 			echo -e "$CWR - $WLDIR NOT found, creating..."
 			sudo mkdir $WLDIR
-		fi	
-	
+		fi
+
 		# stage the .desktop file
-		echo -e  "[Desktop Entry]\nName=Hyprland\nComment=An intelligent dynamic tiling Wayland compositor\nExec=Hyprland\nType=Application" | sudo tee /usr/share/wayland-sessions/hyprland.desktop	
+		echo -e "[Desktop Entry]\nName=Hyprland\nComment=An intelligent dynamic tiling Wayland compositor\nExec=Hyprland\nType=Application" | sudo tee /usr/share/wayland-sessions/hyprland.desktop
 		if [[ "$ISNVIDIA" == true ]]; then
 			# setup nvidia startup file
 			#cp Extras/start-hypr-nvidia ~/.start-hypr-nvidia
@@ -405,10 +409,6 @@ if [[ $INST == "Y" || $INST == "y" ]]; then
 		echo -e "$CNT - Stage 4 - Installing intel graphics driver, this may take a while..."
 		install_software "${intel_list[@]}"
 	fi
-
-	
-
-
 
 	## Stage 2 - more tools
 	#echo -e "$CNT - Stage 2 - Installing additional tools and utilities, this may take a while..."
