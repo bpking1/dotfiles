@@ -1,8 +1,8 @@
  {
    "mpris": {
 	//"player": "yesplaymusic",
-	"player": "chromium",
-	//"player": "musicfox",
+	//"player": "chromium",
+	"player": "musicfox",
 	//"format": "{player_icon}",
 	//"format-paused": "{status_icon}",
 	"format": "{player_icon} {title}",
@@ -59,7 +59,7 @@
               "tooltip-format": "上午：code\n下午：read\n晚上：code\n<tt>{calendar}</tt>"
             },
             "cpu": {
-              "format": " {usage}%",
+              "format": "P {usage}%",
               "interval": 1
             },
             "custom/cava-internal": {
@@ -84,7 +84,8 @@
               "tooltip": false
             },
 	     "custom/song": {
-        	"exec": "sleep 1s && /home/hj/.config/waybar/song-yesplaymusic.sh",
+        	//"exec": "sleep 1s && /home/hj/.config/waybar/song-yesplaymusic.sh",
+        	"exec": "sleep 1s && /home/hj/.config/waybar/song-musicfox.sh",
         	//"exec": "sleep 1s && /home/hj/.config/waybar/song-R3PLAY.sh",
         	"tooltip": true
         	},
@@ -98,19 +99,18 @@
             },
             "layer": "top",
             "memory": {
-              "format": "﬙ {percentage}%",
+              "format": "M {percentage}%",
               "interval": 1,
               "states": {
                 "warning": 85
               }
             },
             "modules-center": [
-              "clock"
             ],
             "modules-left": [
               "custom/launcher",
               "wlr/workspaces",
-              "temperature",
+              //"temperature",
               //"idle_inhibitor",
               //"custom/wall",
               //"mpd",
@@ -119,6 +119,7 @@
 	      //"mpris"
             ],
             "modules-right": [
+              "clock",
               "network",
               "pulseaudio",
               //"backlight",

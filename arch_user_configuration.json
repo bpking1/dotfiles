@@ -1,39 +1,39 @@
 {
-    "additional-repositories": [
-        "multilib"
-    ],
-    "audio": "pipewire",
-    "bootloader": "grub-install",
-    "config_version": "2.5.6",
-    "debug": false,
-    "disk_encryption": null,
-    "harddrives": [
-        "/dev/vda"
-    ],
-    "kernels": [
-        "linux"
-    ],
-    "mirror-region": {
-        "China": {
-            "https://mirrors.ustc.edu.cn/archlinux/$repo/os/$arch": true
-        }
-    },
-    "nic": null,
-    "no_pkg_lookups": false,
-    "offline": false,
-    "packages": [
-        "vim",
-        "dhcpcd"
-	"git"
-    ],
-    "profile": {
-        "path": "/usr/lib/python3.11/site-packages/archinstall/profiles/minimal.py"
-    },
-    "script": "guided",
-    "silent": false,
-    "swap": false,
-    "sys-encoding": "utf-8",
-    "sys-language": "en_US",
-    "timezone": "Asia/Shanghai",
-    "version": "2.5.6"
+  "additional-repositories": [
+    "multilib"
+  ],
+  "audio": "pipewire",
+  "bootloader": "grub",
+  "config_version": "2.5.6",
+  "debug": false,
+  "disk_encryption": null,
+  "harddrives": [
+    "/dev/vda"
+  ],
+  "kernels": [
+    "linux"
+  ],
+  "mirror-region": {
+    "China": {
+      "https://mirrors.ustc.edu.cn/archlinux/$repo/os/$arch": true
+    }
+  },
+  "nic": null,
+  "no_pkg_lookups": false,
+  "offline": false,
+  "packages": [
+    "vim",
+    "dhcpcd",
+    "git"
+  ],
+  "profile": {
+    "path": "/usr/lib/python3.11/site-packages/archinstall/profiles/minimal.py"
+  },
+  "script": "guided",
+  "silent": false,
+  "swap": false,
+  "sys-encoding": "utf-8",
+  "sys-language": "en_US",
+  "timezone": "Asia/Shanghai",
+  "version": "2.5.6"
 }
