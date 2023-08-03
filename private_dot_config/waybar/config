@@ -1,187 +1,254 @@
- {
-   "mpris": {
-	//"player": "yesplaymusic",
-	//"player": "chromium",
-	"player": "musicfox",
-	//"format": "{player_icon}",
-	//"format-paused": "{status_icon}",
-	"format": "{player_icon} {title}",
-	"format-paused": "{status_icon} {title}",
-	"player-icons": {
-		//"default": "▶",
-		"default": "🎵",
-		"mpv": "🎵"
-	},
-	"status-icons": {
-		"paused": "⏸"
-	},
-	// "ignored-players": ["firefox"]
-},
+{
+    "layer": "top",
+    "position": "top",
+    "mod": "dock",
+    "exclusive": true,
+    "passthrough": false,
+    "gtk-layer-shell": true,
+    "height": 20,
+    "modules-left": ["custom/launcher","custom/power_btn","custom/lock_screen","wlr/workspaces",
+        //"wlr/taskbar",
+        "custom/cava-internal",
+        "mpris",
+        //"mpd",
+        "custom/song"  
+    ],
+    "modules-right": [
+        "network",
+        "cpu","memory",
+        "disk",
+        "temperature",
+        "battery",
+        "pulseaudio",
+        "backlight",
+        "tray",
+        //"custom/weather",
+        "custom/updates",
+        "clock"
+    ],
 
-            "backlight": {
-              //"device": "intel_backlight",
-              "format": "{icon} {percent}%",
-              "format-icons": [
-                "",
-                "",
-                "",
-                ""
-              ],
-              "on-scroll-down": "light -U 5",
-              "on-scroll-up": "light -A 5"
-            },
-            "battery": {
-              "format": "{icon} {capacity}%",
-              "format-charging": " {capacity}%",
-              "format-full": "{icon} {capacity}%",
-              "format-icons": [
-                "",
-                "",
-                "",
-                "",
-                "",
-                "",
-                "",
-                "",
-                ""
-              ],
-              "interval": 10,
-              "states": {
-                "critical": 10,
-                "warning": 20
-              },
-              "tooltip": false
-            },
-            "clock": {
-              "format": "{:%I:%M %p  %A %b %d}",
-              "interval": 1,
-              "tooltip": true,
-              "tooltip-format": "上午：code\n下午：read\n晚上：code\n<tt>{calendar}</tt>"
-            },
-            "cpu": {
-              "format": "P {usage}%",
-              "interval": 1
-            },
-            "custom/cava-internal": {
-              "exec": "sleep 1s && cava-internal",
-              "tooltip": false
-            },
-            "custom/launcher": {
-              "format": " ",
-              "on-click": "pkill rofi || ~/.config/rofi/launcher.sh",
-              "tooltip": false
-            },
-            "custom/wall": {
-              "on-click": "wallpaper_random",
-              "on-click-middle": "default_wall",
-              "on-click-right": "killall dynamic_wallpaper || dynamic_wallpaper &",
-              "format": " ﴔ ",
-              "tooltip": false
-            },
-            "custom/powermenu": {
-              "format": "",
-              "on-click": "pkill rofi || ~/.config/rofi/powermenu.sh",
-              "tooltip": false
-            },
-	     "custom/song": {
-        	//"exec": "sleep 1s && /home/hj/.config/waybar/song-yesplaymusic.sh",
-        	"exec": "sleep 1s && /home/hj/.config/waybar/song-musicfox.sh",
-        	//"exec": "sleep 1s && /home/hj/.config/waybar/song-R3PLAY.sh",
-        	"tooltip": true
-        	},
-            "idle_inhibitor": {
-              "format": "{icon}",
-              "format-icons": {
-                "activated": "",
-                "deactivated": ""
-              },
-              "tooltip": false
-            },
-            "layer": "top",
-            "memory": {
-              "format": "M {percentage}%",
-              "interval": 1,
-              "states": {
-                "warning": 85
-              }
-            },
-            "modules-center": [
-            ],
-            "modules-left": [
-              "custom/launcher",
-              "wlr/workspaces",
-              //"temperature",
-              //"idle_inhibitor",
-              //"custom/wall",
-              //"mpd",
-              "custom/cava-internal"
-              //"custom/song",
-	      //"mpris"
-            ],
-            "modules-right": [
-              "clock",
-              "network",
-              "pulseaudio",
-              //"backlight",
-              "memory",
-              "cpu",
-              //"battery",
-              "custom/powermenu"
-              //"tray"
-            ],
-            "mpd": {
-	      "server": "/home/hj/.config/mpd/socket",
-              "format": "<span foreground='#8EBBBA'></span> {title}",
-              "format-disconnected": "",
-              "format-paused": " {title}",
-              "format-stopped": "<span foreground='#bb9af7'></span>",
-              "max-length": 25,
-              "on-click": "mpc --quiet toggle",
-              "on-click-middle": "kitty --class='ncmpcpp' ncmpcpp ",
-              "on-click-right": "mpc update; mpc ls | mpc add",
-              "on-scroll-down": "mpc --quiet next",
-              "on-scroll-up": "mpc --quiet prev",
-              "smooth-scrolling-threshold": 5,
-              "tooltip-format": "{title} - {artist} ({elapsedTime:%M:%S}/{totalTime:%H:%M:%S})"
-            },
-            "network": {
-              "format-disconnected": "說 Disconnected",
-              //"format-ethernet": "  {ifname} ({ipaddr})",
-              "format-ethernet": "<span color='#589df6'>⇵</span> {bandwidthDownBits} / {bandwidthUpBits}",
-              "format-linked": "說 {essid} (No IP)",
-              "format-wifi": "說 {essid}",
-              "interval": 1,
-              "tooltip": false
-            },
-            "position": "top",
-            "pulseaudio": {
-              "format": "{icon} {volume}%",
-              "format-icons": {
-                "default": [
-                  "",
-                  "",
-                  ""
-                ]
-              },
-              "format-muted": "婢 Muted",
-              "on-click": "pamixer -t",
-              "scroll-step": 1,
-              "states": {
-                "warning": 85
-              },
-              "tooltip": false
-            },
-            "temperature": {
-              "format": " {temperatureC}°C",
-              "tooltip": false
-            },
-            "tray": {
-              "icon-size": 15,
-              "spacing": 5
-            },
-            "wlr/workspaces": {
-              "format": "{icon}",
-              "on-click": "activate",
-              "active-only": false,
-            }
-          }
+    "custom/launcher": {
+        "format": "",
+        "on-click": "pkill rofi || ~/.config/rofi/launcher.sh",
+        "tooltip": false
+    },
+
+    "custom/power_btn": {
+        "format": "",
+        "on-click": "pkill rofi || ~/.config/rofi/powermenu.sh",
+        "tooltip": false
+    },
+    "custom/song": {
+        //"exec": "sleep 1s && /home/hj/.config/waybar/scripts/song-yesplaymusic.sh",
+        "exec": "sleep 1s && /home/hj/.config/waybar/scripts/song-musicfox.sh",
+        //"exec": "sleep 1s && /home/hj/.config/waybar/scripts/song-R3PLAY.sh",
+        "tooltip": true
+    },
+    "mpris": {
+	    "player": "musicfox",
+	    "format": "{player_icon}",
+	    //"format": "{player_icon} {title}",
+	    "format-paused": "{status_icon}",
+	    "player-icons": {
+	    	"default": "🎵",
+	    	"mpv": "🎵"
+	    },
+	    "status-icons": {
+	    	"paused": "⏸"
+	    },
+	    //"ignored-players": ["firefox"]
+    },
+    "custom/cava-internal": {
+        "exec": "sleep 1s && /home/hj/.config/waybar/scripts/cava-internal",
+        "tooltip": false
+    },
+    "custom/lock_screen": {
+        "format": "",
+        "on-click": "sh -c '(sleep 0.5s; swaylock)' & disown",
+        "tooltip": false
+    },
+
+    "wlr/workspaces": {
+        "disable-scroll": true,
+        "all-outputs": true,
+        "on-click": "activate",
+        "persistent_workspaces": {
+            "1": [],
+            "2": [],
+            "3": [],
+            "4": [],
+            "5": [],
+            "6": [],
+            "7": [],
+            "8": [],
+            "9": [],
+            "10": []
+        }
+    },
+
+    "wlr/taskbar": {
+        "format": "{icon}{name}",
+        "icon-size": 16,
+        "all-outputs": true,
+        "tooltip-format": "{title}",
+        "on-click": "activate",
+        "on-click-middle": "close",
+        "ignore-list": [
+            "wofi"
+         ]
+    },
+
+    "cpu": {
+        "interval": 10,
+        "format": "",
+        "max-length": 10,
+        "format-alt-click": "click-right",
+        "format-alt": " {usage}%",
+        "on-click": "kitty --start-as=fullscreen --title btop sh -c 'btop'"
+    },
+
+    "memory": {
+        "interval": 30,
+        "format": "",
+        "format-alt-click": "click-right",
+        "format-alt": " {}%",
+        "max-length": 10,
+        "tooltip": true,
+        "tooltip-format": "Memory - {used:0.1f}GB used",
+        "on-click": "kitty --start-as=fullscreen --title btop sh -c 'btop'"
+    },
+    
+    "disk": {
+        "interval": 30,
+        "format": "󰋊",
+        "path": "/",
+        "format-alt-click": "click-right",
+        "format-alt": "󰋊 {percentage_used}%",
+        "tooltip": true,
+        "tooltip-format": "HDD - {used} used out of {total} on {path} ({percentage_used}%)",
+        "on-click": "kitty --start-as=fullscreen --title btop sh -c 'btop'"
+    },
+
+    "temperature": {
+        "thermal-zone": 1,
+        "format": "",
+        "format-alt-click": "click-right",
+        "format-alt": " {temperatureC}°C",
+        "critical-threshold": 70,
+        "format-critical": " {temperatureC}°C",
+        "on-click": "kitty --start-as=fullscreen --title btop sh -c 'btop'"
+    },
+
+    "battery": {
+        "states": {
+            "good": 95,
+            "warning": 30,
+            "critical": 20
+        },
+        "format": "{icon}",
+        "format-charging": " {capacity}%",
+        "format-plugged": " {capacity}%",
+        "format-alt-click": "click-right",
+        "format-alt": "{icon} {capacity}%",
+        "format-icons": ["󰂎", "󰁺", "󰁻", "󰁼", "󰁽", "󰁾", "󰁿", "󰂀", "󰂁", "󰂂", "󰁹"]
+    },
+
+    "pulseaudio": {
+        "format": "{icon}",
+        "format-muted": "",
+        "on-click": "pamixer -t",
+        "on-click-right": "pavucontrol",
+        "scroll-step": 1,
+        "format-icons": {
+            "headphone": "",
+            "hands-free": "",
+            "headset": "",
+            "phone": "",
+            "portable": "",
+            "car": "",
+            "default": ["", "", ""]
+        },
+        "tooltip": true,
+        "tooltip-format": "{icon} at {volume}%"
+    },
+
+    "pulseaudio#microphone": {
+        "format": "{format_source}",
+        "format-source": "",
+        "format-source-muted": "",
+        "on-click": "pamixer -m",
+        "on-click-right": "pavucontrol",
+        "scroll-step": 1,
+        "tooltip": true,
+        "tooltip-format": " at {volume}%"
+    },
+
+    "backlight": {
+        "device": "intel_backlight",
+        "format": "{icon}",
+        "format-alt-click": "click-right",
+        "format-alt": "{icon} {percent}%",
+        "format-icons": ["󰃞", "󰃟", "󰃠"],
+        "on-scroll-up": "~/.config/waybar/scripts/brightness --inc",
+        "on-scroll-down": "~/.config/waybar/scripts/brightness --dec"
+    },
+
+    "tray": {
+        "icon-size": 16,
+        "spacing": 10
+    },
+
+    "custom/weather": {
+        //shows the current weather and forecast
+        "tooltip" : true,
+        "format" : "{}",
+        "interval" : 30,
+        "exec" : "~/.config/waybar/scripts/waybar-wttr.py",
+        "return-type" : "json"
+    },
+    "network": {
+        "format-disconnected": "󰯡 Disconnected",
+        "format-ethernet": "󰀂 <span color='#589df6'>⇵</span> {bandwidthDownBits} / {bandwidthUpBits}",
+        "format-linked": "󰖪 {essid} (No IP)",
+        "format-wifi": "󰖩 {essid} <span color='#589df6'>⇵</span> {bandwidthDownBits} / {bandwidthUpBits}",
+        "interval": 1,
+        "tooltip": false
+    },
+
+    "custom/updates": {
+        "format": "{}",
+        "exec": "~/.config/waybar/scripts/update-sys",
+        "on-click": "~/.config/waybar/scripts/update-sys update",
+        "interval": 300,
+        "tooltip": true
+    },
+
+    "clock": {
+        "format": "{:%I:%M %p}",
+        "tooltip": true,
+        "tooltip-format": "{: %A, %B %e %Y}"
+    },
+    "mpd": {
+	    "server": "/home/hj/.config/mpd/socket",
+        "format": "<span foreground='#8EBBBA'></span> {title}",
+        "format-disconnected": "",
+        "format-paused": " {title}",
+        "format-stopped": "<span foreground='#bb9af7'></span>",
+        "max-length": 25,
+        "on-click": "mpc --quiet toggle",
+        "on-click-middle": "kitty --class='ncmpcpp' ncmpcpp ",
+        "on-click-right": "mpc update; mpc ls | mpc add",
+        "on-scroll-down": "mpc --quiet next",
+        "on-scroll-up": "mpc --quiet prev",
+        "smooth-scrolling-threshold": 5,
+        "tooltip-format": "{title} - {artist} ({elapsedTime:%M:%S}/{totalTime:%H:%M:%S})"
+    },
+    "idle_inhibitor": {
+        "format": "{icon}",
+        "format-icons": {
+          "activated": "",
+          "deactivated": ""
+        },
+        "tooltip": false
+    }
+}

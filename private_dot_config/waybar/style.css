@@ -1,98 +1,133 @@
 * {
-  font-size: 12px;
-  font-family: "LXGW WenKai GB Screen R";
+    border: none;
+    border-radius: 0;
+    font-weight: bold;
+    min-height: 0;
+    font-size: 14px;
+    font-family: "LXGW WenKai GB Screen R";
 }
 
 window#waybar {
-    background: rgba(0,0,0,0);
+    background: rgba(0, 0, 0, 0);
 }
 
-#battery {
-  margin: 3px 0px 3px 0px;
-  background: #1d1f21;
-  padding: 5px;
-  color: #c5c8c6;
+tooltip {
+    background: #3b4253;
 }
 
-#custom-powermenu {
-  margin: 3px 3px 3px 0px;
-  padding: 5px 7px 5px 5px;
-  border-top-right-radius: 10px;
-  border-bottom-right-radius: 10px;
-  border-right: 2px solid #1d1f21;
-  border-top: 2px solid #1d1f21;
-  border-bottom: 2px solid #1d1f21;
-  background: #F00;
-  color: #FFF;
-}
-        #memory {
-  background: #1d1f21;
-  color: #c5c8c6;
-  margin: 3px 0px 3px 0px;
-  padding: 5px;
-                color: #8EBBBA;
-              }
-        #cpu {
-  background: #1d1f21;
-  color: #c5c8c6;
-  margin: 3px 0px 3px 0px;
-  padding: 5px;
-                color: #B38DAC;
-              }
-        #clock {
-                color: #E4E8EF;
-              }
-
-#clock {
-  margin: 3px 0px 3px 3px;
-  padding: 5px;
-  color: #FFF;
-  background: #1d1f21;
-  border-top-left-radius: 10px;
-  border-bottom-left-radius: 10px;
-  color: #c5c8c6;
+tooltip label {
+    color: #E4E8EF;
 }
 
+#workspaces {
+    padding-left: 0px;
+    padding-right: 4px;
+}
+
+#workspaces button {
+    padding-top: 5px;
+    padding-bottom: 5px;
+    padding-left: 6px;
+    padding-right: 6px;
+    color: rgb(26, 24, 38);
+}
+
+#workspaces button.active {
+    background-color: rgb(181, 232, 224);
+    color: rgb(26, 24, 38);
+}
+
+#workspaces button.urgent {
+    color: rgb(26, 24, 38);
+}
+
+#workspaces button:hover {
+    background-color: #B38DAC;
+    color: rgb(26, 24, 38);
+}
+
+#custom-song,
+#mpris,
+#custom-launcher,
+#custom-lock_screen,
+#custom-light_dark,
+#custom-power_btn,
+#custom-power_profile,
+#custom-weather,
+#custom-myhyprv,
+#cpu,
+#disk,
+#custom-updates,
+#memory,
+#clock,
+#battery,
+#pulseaudio,
+#network,
+#tray,
+#temperature,
+#backlight {
+    padding: 5px;
+    margin: 3px 0px 3px 0px;
+    border: 0px;
+}
+
+#custom-weather,
+#cpu,
+#disk,
+#custom-updates,
+#memory,
+#clock,
+#battery,
+#pulseaudio,
+#network,
+#tray,
+#temperature,
+#backlight {
+    background: #1d1f21;
+    color: #c5c8c6;
+}
+
+#custom-launcher,
+#network {
+    border-radius: 10px 0px 0px 10px;
+}
+
+
+#temperature.critical {
+    color: #e92d4d;
+}
+
+
+#custom-power_profile,
+#battery,
+#temperature {
+    color: #1d7715;
+    border-left: 0px;
+    border-right: 0px;
+}
+
+#memory {
+    color: #8EBBBA;
+}
+
+#cpu {
+    color: #B38DAC;
+}
+
+#custom-launcher {
+    color: #407cdd;
+    margin-left: 10px;
+    border-right: 0px;
+}
 
 #pulseaudio {
-  margin: 3px 0px 3px 0px;
-  padding: 5px;
-  background: #1d1f21;
-  color: #c5c8c6;
+    color: #407cdd;
+    border-left: 0px;
+    border-right: 0px;
 }
 
-#network {
-  background: #1d1f21;
-  color: #c5c8c6;
-  margin: 3px 0px 3px 0px;
-  padding: 5px;
+#pulseaudio.microphone {
+    color: #ad6bfd;
+    border-left: 0px;
+    border-right: 0px;
 }
-        #workspaces {
-                padding-left: 0px;
-                padding-right: 4px;
-              }
-        #workspaces button {
-                padding-top: 5px;
-                padding-bottom: 5px;
-                padding-left: 6px;
-                padding-right: 6px;
-                color: rgb(26, 24, 38);
-              }
-        #workspaces button.active {
-                background-color: rgb(181, 232, 224);
-                color: rgb(26, 24, 38);
-              }
-        #workspaces button.urgent {
-                color: rgb(26, 24, 38);
-              }
-        #workspaces button:hover {
-                background-color: #B38DAC;
-                color: rgb(26, 24, 38);
-              }
-              tooltip {
-                /* background: rgb(250, 244, 252); */
-                background: #3b4253;
-              }
-              tooltip label {
-                color: #E4E8EF;
-              }
