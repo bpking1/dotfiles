@@ -1,5 +1,6 @@
 #!/bin/bash
 
+# 还有groups,虚拟机配置，input设备手柄
 # Nvidia GPU only
 # linux-headers: Headers and scripts for building modules for the Linux kernel
 # nvidia-dkms: NVIDIA drivers - module sources
@@ -9,7 +10,6 @@
 # libva-nvidia-driver-git [AUR]: VA-API implementation that uses NVDEC as a backend (git version)
 
 # swaylock-effects [AUR]: A fancier screen locker for Wayland.
-# wofi: launcher for wlroots-based wayland compositors
 # wlogout [AUR]: Logout menu for wayland
 # swappy: A Wayland native snapshot editing tool
 # thunar: Modern, fast and easy-to-use file manager for Xfce
@@ -22,7 +22,6 @@
 # gvfs: Virtual filesystem implementation for GIO
 # thunar-archive-plugin: Adds archive operations to the Thunar file context menus
 # file-roller: Create and modify archives
-# noto-fonts-emoji: Google Noto emoji fonts
 # lxappearance: Feature-rich GTK+ theme switcher of the LXDE Desktop
 # xfce4-settings: Xfce's Configuration System
 # sddm-sugar-candy-git [AUR]: Sugar Candy is the sweetest login theme available for the SDDM display manager.
@@ -261,6 +260,10 @@ de_list=(
 	sddm #sddm-git
 	mpv
 	pavucontrol
+	mpd
+	mpc        #管理mpd
+	mpdris2-rs # 将mpd输出到mpris
+
 )
 
 de_list_extra=(
@@ -289,7 +292,6 @@ de_list_extra=(
 	rust
 	nodejs
 	flutter
-	mpd
 	# v2raya, clash
 	# 快捷搜索，翻译
 	koodo-reader # reader
@@ -359,13 +361,9 @@ if [[ $INST == "Y" || $INST == "y" ]]; then
 		echo -e "options nvidia-drm modeset=1" | sudo tee -a /etc/modprobe.d/nvidia.conf &>>$INSTLOG
 	fi
 
+	## Stage 1 - main components
 	echo -e "$CNT - Stage 1 - Installing main components, this may take a while..."
 	install_software "${base_software_list[@]}"
-	## Stage 1 - main components
-	#echo -e "$CNT - Stage 1 - Installing main components, this may take a while..."
-	#for SOFTWR in hyprland kitty waybar jq mako swww swaylock-effects wofi wlogout xdg-desktop-portal-hyprland swappy grim slurp thunar; do
-	#	install_software $SOFTWR
-	#done
 
 	## Stage 2 - de software, input method
 	echo -e "$CNT - Stage 2 - install de software, this may take a while..."
@@ -394,11 +392,9 @@ if [[ $INST == "Y" || $INST == "y" ]]; then
 		echo -e "[Desktop Entry]\nName=Hyprland\nComment=An intelligent dynamic tiling Wayland compositor\nExec=Hyprland\nType=Application" | sudo tee /usr/share/wayland-sessions/hyprland.desktop
 		if [[ "$ISNVIDIA" == true ]]; then
 			# setup nvidia startup file
-			#cp Extras/start-hypr-nvidia ~/.start-hypr-nvidia
 			sudo sed -i 's/Exec=Hyprland/Exec=\/home\/'$USER'\/.start-hypr-nvidia/' /usr/share/wayland-sessions/hyprland.desktop
 		else
 			# setup non nvidia startup file
-			#cp Extras/start-hypr-amd ~/.start-hypr-amd
 			sudo sed -i 's/Exec=Hyprland/Exec=\/home\/'$USER'\/.start-hypr-amd/' /usr/share/wayland-sessions/hyprland.desktop
 		fi
 	fi
@@ -409,18 +405,6 @@ if [[ $INST == "Y" || $INST == "y" ]]; then
 		echo -e "$CNT - Stage 4 - Installing intel graphics driver, this may take a while..."
 		install_software "${intel_list[@]}"
 	fi
-
-	## Stage 2 - more tools
-	#echo -e "$CNT - Stage 2 - Installing additional tools and utilities, this may take a while..."
-	#for SOFTWR in polkit-gnome python-requests pamixer pavucontrol brightnessctl bluez bluez-utils blueman network-manager-applet gvfs thunar-archive-plugin file-roller btop pacman-contrib; do
-	#	install_software $SOFTWR
-	#done
-
-	## Stage 3 - some visual tools
-	#echo -e "$CNT - Stage 3 - Installing theme and visual related tools and utilities, this may take a while..."
-	#for SOFTWR in starship ttf-jetbrains-mono-nerd noto-fonts-emoji lxappearance xfce4-settings sddm qt5-svg qt5-quickcontrols2 qt5-graphicaleffects; do
-	#	install_software $SOFTWR
-	#done
 
 	## Start the bluetooth service
 	#echo -e "$CNT - Starting the Bluetooth Service..."
@@ -437,67 +421,6 @@ if [[ $INST == "Y" || $INST == "y" ]]; then
 	yay -R --noconfirm xdg-desktop-portal-gnome xdg-desktop-portal-gtk &>>$INSTLOG
 fi
 
-#### Copy Config Files ###
-#read -rep $'[\e[1;33mACTION\e[0m] - Would you like to copy config files? (y,n) ' CFG
-#if [[ $CFG == "Y" || $CFG == "y" ]]; then
-#	echo -e "$CNT - Copying config files..."
-#
-#	# copy the HyprV directory
-#	cp -R HyprV ~/.config/
-#
-#	# Setup each appliaction
-#	# check for existing config folders and backup
-#	for DIR in hypr kitty mako swaylock waybar wlogout wofi; do
-#		DIRPATH=~/.config/$DIR
-#		if [ -d "$DIRPATH" ]; then
-#			echo -e "$CAT - Config for $DIR located, backing up."
-#			mv $DIRPATH $DIRPATH-back &>>$INSTLOG
-#			echo -e "$COK - Backed up $DIR to $DIRPATH-back."
-#		fi
-#
-#		# make new empty folders
-#		mkdir -p $DIRPATH &>>$INSTLOG
-#	done
-#
-#	# link up the config files
-#	echo -e "$CNT - Setting up the new config..."
-#	cp ~/.config/HyprV/hypr/* ~/.config/hypr/
-#	ln -sf ~/.config/HyprV/kitty/kitty.conf ~/.config/kitty/kitty.conf
-#	ln -sf ~/.config/HyprV/mako/conf/config-dark ~/.config/mako/config
-#	ln -sf ~/.config/HyprV/swaylock/config ~/.config/swaylock/config
-#	ln -sf ~/.config/HyprV/waybar/conf/v3-config.jsonc ~/.config/waybar/config.jsonc
-#	ln -sf ~/.config/HyprV/waybar/style/v3-style-dark.css ~/.config/waybar/style.css
-#	ln -sf ~/.config/HyprV/wlogout/layout ~/.config/wlogout/layout
-#	ln -sf ~/.config/HyprV/wofi/config ~/.config/wofi/config
-#	ln -sf ~/.config/HyprV/wofi/style/v3-style-dark.css ~/.config/wofi/style.css
-#
-#	# Copy the SDDM theme
-#	echo -e "$CNT - Setting up the login screen."
-#	sudo cp -R Extras/sdt /usr/share/sddm/themes/
-#	sudo chown -R $USER:$USER /usr/share/sddm/themes/sdt
-#	sudo mkdir /etc/sddm.conf.d
-#	echo -e "[Theme]\nCurrent=sdt" | sudo tee -a /etc/sddm.conf.d/10-theme.conf &>>$INSTLOG
-#	WLDIR=/usr/share/wayland-sessions
-#	if [ -d "$WLDIR" ]; then
-#		echo -e "$COK - $WLDIR found"
-#	else
-#		echo -e "$CWR - $WLDIR NOT found, creating..."
-#		sudo mkdir $WLDIR
-#	fi
-#
-#	# stage the .desktop file
-#	sudo cp Extras/hyprland.desktop /usr/share/wayland-sessions/
-#
-#	if [[ "$ISNVIDIA" == true ]]; then
-#		# setup nvidia startup file
-#		cp Extras/start-hypr-nvidia ~/.start-hypr-nvidia
-#		sudo sed -i 's/Exec=Hyprland/Exec=\/home\/'$USER'\/.start-hypr-nvidia/' /usr/share/wayland-sessions/hyprland.desktop
-#	else
-#		# setup non nvidia startup file
-#		cp Extras/start-hypr-amd ~/.start-hypr-amd
-#		sudo sed -i 's/Exec=Hyprland/Exec=\/home\/'$USER'\/.start-hypr-amd/' /usr/share/wayland-sessions/hyprland.desktop
-#	fi
-#
 #	# setup the first look and feel as dark
 #	xfconf-query -c xsettings -p /Net/ThemeName -s "Adwaita-dark"
 #	xfconf-query -c xsettings -p /Net/IconThemeName -s "Adwaita-dark"
@@ -506,47 +429,6 @@ fi
 #	cp -f ~/.config/HyprV/backgrounds/v3-background-dark.jpg /usr/share/sddm/themes/sdt/wallpaper.jpg
 #fi
 #
-#### Install the starship shell ###
-#read -rep $'[\e[1;33mACTION\e[0m] - Would you like to activate the starship shell? (y,n) ' STAR
-#if [[ $STAR == "Y" || $STAR == "y" ]]; then
-#	# install the starship shell
-#	echo -e "$CNT - Hansen Crusher, Engage!"
-#	echo -e "$CNT - Updating .bashrc..."
-#	echo -e '\neval "$(starship init bash)"' >>~/.bashrc
-#	echo -e "$CNT - copying starship config file to ~/.confg ..."
-#	cp Extras/starship.toml ~/.config/
-#fi
-#
-#### Install software for Asus ROG laptops ###
-#read -rep $'[\e[1;33mACTION\e[0m] - For ASUS ROG Laptops - Would you like to install Asus ROG software support? (y,n) ' ROG
-#if [[ $ROG == "Y" || $ROG == "y" ]]; then
-#	echo -e "$CNT - Adding Keys..."
-#	sudo pacman-key --recv-keys 8F654886F17D497FEFE3DB448B15A6B0E9A3FA35 &>>$INSTLOG
-#	sudo pacman-key --finger 8F654886F17D497FEFE3DB448B15A6B0E9A3FA35 &>>$INSTLOG
-#	sudo pacman-key --lsign-key 8F654886F17D497FEFE3DB448B15A6B0E9A3FA35 &>>$INSTLOG
-#	sudo pacman-key --finger 8F654886F17D497FEFE3DB448B15A6B0E9A3FA35 &>>$INSTLOG
-#
-#	LOC="/etc/pacman.conf"
-#	echo -e "$CNT - Updating $LOC with g14 repo."
-#	echo -e "\n[g14]\nServer = https://arch.asus-linux.org" | sudo tee -a $LOC &>>$INSTLOG
-#	echo -e "$CNT - Update the system..."
-#	sudo pacman -Suy --noconfirm &>>$INSTLOG
-#
-#	echo -e "$CNT - Installing ROG pacakges..."
-#	install_software asusctl
-#	install_software supergfxctl
-#	install_software rog-control-center
-#
-#	echo -e "$CNT - Activating ROG services..."
-#	sudo systemctl enable --now power-profiles-daemon.service &>>$INSTLOG
-#	sleep 2
-#	sudo systemctl enable --now supergfxd &>>$INSTLOG
-#	sleep 2
-#
-#	# add the ROG keybinding file to the config
-#	echo -e "\nsource = ~/.config/hypr/rog-g15-strix-2021-binds.conf" >>~/.config/hypr/hyprland.conf
-#fi
-
 ### Script is done ###
 echo -e "$CNT - Script had completed!"
 if [[ "$ISNVIDIA" == true ]]; then

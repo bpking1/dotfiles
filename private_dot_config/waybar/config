@@ -45,9 +45,9 @@
         "tooltip": true
     },
     "mpris": {
-	    "player": "musicfox",
-	    "format": "{player_icon}",
-	    //"format": "{player_icon} {title}",
+	    "player": "mpd",
+	    //"format": "{player_icon}",
+	    "format": "{player_icon} {title}",
 	    "format-paused": "{status_icon}",
 	    "player-icons": {
 	    	"default": "🎵",
@@ -154,7 +154,7 @@
     },
 
     "pulseaudio": {
-        "format": "{icon}",
+        "format": "{icon} {volume}",
         "format-muted": "",
         "on-click": "pamixer -t",
         "on-click-right": "pavucontrol",
@@ -229,10 +229,10 @@
         "tooltip-format": "{: %A, %B %e %Y}"
     },
     "mpd": {
-	    "server": "/home/hj/.config/mpd/socket",
+	    "server": "127.0.0.1",
         "format": "<span foreground='#8EBBBA'></span> {title}",
         "format-disconnected": "",
-        "format-paused": " {title}",
+        "format-paused": "⏸ {title}",
         "format-stopped": "<span foreground='#bb9af7'></span>",
         "max-length": 25,
         "on-click": "mpc --quiet toggle",
