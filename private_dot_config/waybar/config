@@ -6,9 +6,10 @@
     "passthrough": false,
     "gtk-layer-shell": true,
     "height": 20,
-    "modules-left": ["custom/launcher","custom/power_btn","custom/lock_screen","wlr/workspaces",
+    "modules-left": ["custom/launcher","custom/power_btn","custom/lock_screen","hyprland/workspaces",
         //"wlr/taskbar",
         "custom/cava-internal",
+        //"cava",
         "mpris",
         //"mpd",
         "custom/song"  
@@ -59,8 +60,30 @@
 	    //"ignored-players": ["firefox"]
     },
     "custom/cava-internal": {
-        "exec": "sleep 1s && /home/hj/.config/waybar/scripts/cava-internal",
+        "exec": "sleep 1s && $HOME/.config/waybar/scripts/cava-internal",
         "tooltip": false
+    },
+    "cava": {
+        //"cava_config": "$HOME/.config/cava/config1",
+        "framerate": 30,
+        "autosens": 1,
+        "sensitivity": 100,
+        "bars": 14,
+        "lower_cutoff_freq": 50,
+        "higher_cutoff_freq": 10000,
+        "method": "pulse",
+        "source": "auto",
+        "stereo": true,
+        "reverse": false,
+        "bar_delimiter": 0,
+        "monstercat": false,
+        "waves": true,
+        "noise_reduction": 0.77,
+        "input_delay": 2,
+        "format-icons" : ["▁", "▂", "▃", "▄", "▅", "▆", "▇", "█" ],
+        "actions": {
+                   "on-click-right": "mode"
+                   }
     },
     "custom/lock_screen": {
         "format": "",
@@ -68,7 +91,7 @@
         "tooltip": false
     },
 
-    "wlr/workspaces": {
+    "hyprland/workspaces": {
         "disable-scroll": true,
         "all-outputs": true,
         "on-click": "activate",

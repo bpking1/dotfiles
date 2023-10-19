@@ -319,16 +319,16 @@ intel_list=(mesa lib32-mesa vulkan-intel lib32-vulkan-intel intel-media-driver i
 
 hyprland_list=(
 	hyprland
-	# hyprland-nvidia-git
+	# hyprland-nvidia
 	xdg-desktop-portal-hyprland-git
 	qt5-wayland      # qt6 hypr会自动装
 	pamixer          # voice controll
 	polkit-kde-agent # agent
 	mako             # 系统通知
 	networkmanager
-	waybar-hyprland-git
+	cava-git                   # cross-platform audio visualizer 非git的有bug
+	waybar-cava
 	rofi-lbonn-wayland-git # 应用启动，粘贴板
-	cava                   # cross-platform audio visualizer
 	grimblast-git          # 截图
 	wl-clipboard           # 粘贴版，结合cliphist保持历史记录，rofi搜索
 	cliphist
