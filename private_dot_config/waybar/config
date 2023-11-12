@@ -91,22 +91,24 @@
         "tooltip": false
     },
 
+    // https://github.com/Alexays/Waybar/wiki/Module:-Workspaces
     "hyprland/workspaces": {
+        "active-only": false,
         "disable-scroll": true,
-        "all-outputs": true,
-        "on-click": "activate",
-        "persistent_workspaces": {
-            "1": [],
-            "2": [],
-            "3": [],
-            "4": [],
-            "5": [],
-            "6": [],
-            "7": [],
-            "8": [],
-            "9": [],
-            "10": []
-        }
+        "all-outputs": false,
+        "on-click": "activate"
+        // "persistent_workspaces": {
+        //     "1": [],
+        //     "2": [],
+        //     "3": [],
+        //     "4": [],
+        //     "5": [],
+        //     "6": [],
+        //     "7": [],
+        //     "8": [],
+        //     "9": [],
+        //     "10": []
+        // }
     },
 
     "wlr/taskbar": {
