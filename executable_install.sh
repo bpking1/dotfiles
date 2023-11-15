@@ -223,14 +223,15 @@ base_software_list=(
 	rclone
 	#alist # docker 安装吧
 	syncthing
-	cronie    # crontab
-	starship  # cli prompt
-	z.lua     #  快速跳转文件夹
-	tmux      # screen
-	ctop      # docker top
-	downgrade # 包降级
-	progress  # 查看 cli进度
-	p7zip     # 7z
+	cronie     # crontab
+	starship   # cli prompt
+	z.lua      #  快速跳转文件夹
+	tmux       # screen
+	ctop       # docker top
+	downgrade  # 包降级
+	progress   # 查看 cli进度
+	p7zip      # 7z
+	unarchiver # rar zip
 	openssh
 	unzip
 	ntfs-3g # mount ntfs盘,手动mount吧
@@ -257,7 +258,9 @@ de_list=(
 	# fcitx5-pinyin-sougou # failed
 
 	kitty
-	sddm #sddm-git
+	sddm             #sddm-git
+	sddm-sugar-candy # sddm theme
+	apple-cursor     # cursor theme
 	mpv
 	pavucontrol
 	mpd
@@ -269,6 +272,10 @@ de_list=(
 de_list_extra=(
 
 	flatpak # flatpak install xx
+	ark     # kde ark can be used to browse, extract, create, and modify archives
+	krdc    # kde rdp client,need install freerdp
+	freerdp
+	ksystemlog # kde systemlog viewer
 	google-chrome-stable
 	gtk4   # chrome wayland cjk input
 	upower # for chrome 好像是检测电源的，跟省电模式有关?
@@ -326,17 +333,21 @@ hyprland_list=(
 	polkit-kde-agent # agent
 	mako             # 系统通知
 	networkmanager
-	cava-git                   # cross-platform audio visualizer 非git的有bug
+	cava-git # cross-platform audio visualizer 非git的有bug
 	waybar-cava
 	rofi-lbonn-wayland-git # 应用启动，粘贴板
 	grimblast-git          # 截图
+	swappy                 # 编辑截图，图片
 	wl-clipboard           # 粘贴版，结合cliphist保持历史记录，rofi搜索
 	cliphist
 	xorg-xlsclients # 查看应用是否是 xwayland运行
 	nemo            # file explorer
 	imv             # 图片查看
-	swww            # 壁纸
-	#swayloc         #锁屏
+	# swww            # 壁纸
+	variety #自动下壁纸
+	wpaperd # 壁纸
+	# mpvpaper  # video wallpaper,have bug in nvidia hyprland
+	swaylock-effects #锁屏
 )
 
 ### Install all of the above pacakges ####
