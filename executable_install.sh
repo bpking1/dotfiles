@@ -380,7 +380,7 @@ if [[ $INST == "Y" || $INST == "y" ]]; then
 	echo -e "$CNT - Stage 2 - install de software, this may take a while..."
 	install_software "${de_list[@]}"
 	# fcitx5 env
-	echo -e "GTK_IM_MODULE=fcitx\nQT_IM_MODULE=fcitx\nXMODIFIERS=@im=fcitx\nSDL_IM_MODULE=fcitx\nGLFW_IM_MODULE=ibus" | sudo tee /etc/environment
+	echo -e "QT_IM_MODULE=fcitx\nXMODIFIERS=@im=fcitx\nSDL_IM_MODULE=fcitx\nGLFW_IM_MODULE=ibus" | sudo tee /etc/environment
 
 	# 是否安装hyprland, (y,n)
 	read -rep $'[\e[1;33mACTION\e[0m] - Would you like to install hyprland? (y,n) ' INST_HYPR
