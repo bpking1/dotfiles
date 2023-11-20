@@ -273,6 +273,8 @@ de_list_extra=(
 
 	flatpak # flatpak install xx
 	ark     # kde ark can be used to browse, extract, create, and modify archives
+	pot-translation
+	aur/zotero-beta-bin # book reader
 	krdc    # kde rdp client,need install freerdp
 	freerdp
 	ksystemlog # kde systemlog viewer
@@ -327,6 +329,11 @@ intel_list=(mesa lib32-mesa vulkan-intel lib32-vulkan-intel intel-media-driver i
 hyprland_list=(
 	hyprland
 	# hyprland-nvidia
+	# surface need change scale	
+	# hypr.conf
+	#monitor=,preferred,auto,2
+	
+	# kde-wallet
 	xdg-desktop-portal-hyprland-git
 	qt5-wayland      # qt6 hypr会自动装
 	pamixer          # voice controll
