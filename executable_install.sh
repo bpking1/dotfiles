@@ -206,7 +206,8 @@ base_software_list=(
 	gping       # ping
 	fzf         # everything
 	jq          #
-	tldr        # man
+	# tldr        # man
+	cheat-bin # better than tldr
 	docker
 	docker-buildx
 	docker-compose
@@ -275,7 +276,7 @@ de_list_extra=(
 	ark     # kde ark can be used to browse, extract, create, and modify archives
 	pot-translation
 	aur/zotero-beta-bin # book reader
-	krdc    # kde rdp client,need install freerdp
+	krdc                # kde rdp client,need install freerdp
 	freerdp
 	ksystemlog # kde systemlog viewer
 	google-chrome-stable
@@ -329,10 +330,10 @@ intel_list=(mesa lib32-mesa vulkan-intel lib32-vulkan-intel intel-media-driver i
 hyprland_list=(
 	hyprland
 	# hyprland-nvidia
-	# surface need change scale	
+	# surface need change scale
 	# hypr.conf
 	#monitor=,preferred,auto,2
-	
+
 	# kde-wallet
 	xdg-desktop-portal-hyprland-git
 	qt5-wayland      # qt6 hypr会自动装
