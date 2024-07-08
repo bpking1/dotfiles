@@ -214,8 +214,10 @@ base_software_list=(
 	lazydocker
 	git
 	lazygit
+	gitui # lazygit 替代
 	forgit
-	ranger # cli 文件浏览器
+	# ranger # cli 文件浏览器
+	yazi
 	neofetch
 	htop  # top
 	aria2 # download
@@ -243,6 +245,10 @@ base_software_list=(
 	noto-fonts-extra
 	ttf-firacode-nerd
 	ttf-lxgw-wenkai-screen # luoxiaguwu or wenquanyi
+
+	# bluetooth
+	bluez
+	bluez-utils
 
 )
 
@@ -315,6 +321,9 @@ de_list_extra=(
 	virt-manager # qemu kvm 虚拟机管理
 	waylyrics    # wayland 桌面歌词
 	yt-dl        # video download
+	ventoy-bin   # install system
+	pomatez      # pomato clock todo
+	neovide
 	# yuzu         # ns cemulater
 	# pipewire etc.. # 由archinstall装了
 	# xone-dongle-firmware # xbox 手柄无线

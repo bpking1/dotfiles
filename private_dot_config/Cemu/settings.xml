@@ -12,7 +12,7 @@
     <vk_warning>false</vk_warning>
     <gp_download>true</gp_download>
     <macos_disclaimer>false</macos_disclaimer>
-    <fullscreen>false</fullscreen>
+    <fullscreen>true</fullscreen>
     <proxy_server></proxy_server>
     <disable_screensaver>true</disable_screensaver>
     <console_language>6</console_language>
@@ -54,9 +54,6 @@
     </GamePaths>
     <GameCache/>
     <GraphicPack>
-        <Entry filename="graphicPacks/downloadedGraphicPacks/SkylandersSwapForce/Workarounds/PortalStabilityFix/rules.txt"/>
-        <Entry filename="graphicPacks/downloadedGraphicPacks/BreathOfTheWild/Mods/ExtendedMemory/rules.txt"/>
-        <Entry filename="graphicPacks/downloadedGraphicPacks/KirbyRainbow_InvisibleLineFix/rules.txt"/>
         <Entry filename="graphicPacks/downloadedGraphicPacks/BreathOfTheWild/Graphics/rules.txt">
             <Preset>
                 <category>Aspect Ratio</category>
@@ -83,6 +80,8 @@
                 <preset>Medium (100%, Default)</preset>
             </Preset>
         </Entry>
+        <Entry filename="graphicPacks/downloadedGraphicPacks/BreathOfTheWild/Mods/ExtendedMemory/rules.txt"/>
+        <Entry filename="graphicPacks/downloadedGraphicPacks/SkylandersSwapForce/Workarounds/PortalStabilityFix/rules.txt"/>
         <Entry filename="graphicPacks/downloadedGraphicPacks/BreathOfTheWild/Mods/FPS++/rules.txt">
             <Preset>
                 <category>Mode</category>
@@ -117,6 +116,7 @@
                 <preset>8 Frames Averaged (Default)</preset>
             </Preset>
         </Entry>
+        <Entry filename="graphicPacks/downloadedGraphicPacks/KirbyRainbow_InvisibleLineFix/rules.txt"/>
     </GraphicPack>
     <Graphic>
         <api>1</api>

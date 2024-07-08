@@ -5,3 +5,7 @@ end
 # set -x WEBKIT_DISABLE_DMABUF_RENDERER 1
 starship init fish | source
 lua /usr/share/z.lua/z.lua --init fish | source
+
+# bun
+set --export BUN_INSTALL "$HOME/.bun"
+set --export PATH $BUN_INSTALL/bin $PATH
