@@ -1,3 +1,8 @@
 [default]
 path = "/home/hj/.config/variety/Downloaded"
 duration = "5m"
+
+[HDMI-A-1]
+path = "/home/hj/wallpaper/download.jpeg"
+#path = "/home/hj/wallpaper/wallhaven-qzx91d.jpg"
+#mode = "fit"
