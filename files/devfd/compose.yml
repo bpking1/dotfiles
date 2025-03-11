@@ -1,0 +1,17 @@
+version: '3'
+services:
+  dev:
+    build: .
+    volumes:
+      - ~/workspace:/workspace
+      - ~/.config/fish:/root/.config/fish
+      - ~/.config/nvim:/root/.config/nvim
+      - ~/.config/tmux:/root/.config/tmux
+      - dev-plugins:/root/.local/share/nvim/site
+    environment:
+      - TERM=xterm-256color
+    tty: true
+    stdin_open: true
+
+volumes:
+  dev-plugins:
