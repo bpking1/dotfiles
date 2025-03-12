@@ -10,9 +10,6 @@ RUN dnf install -y fish && chsh -s /usr/bin/fish
 # 安装 ripgrep, fd, exa, broot, duf, dog, fzf, jq, cheat-bin
 RUN dnf install -y ripgrep fd exa fzf jq cheat gitui
 
-# 安装 lazyvim
-RUN git clone https://github.com/LazyVim/starter ~/.config/nvim && rm -rf ~/.config/nvim/.git
-
 # 安装 dotnet core
 RUN dnf install -y dotnet-sdk-9.0
 
