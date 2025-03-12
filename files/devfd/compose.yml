@@ -2,16 +2,22 @@ version: '3'
 services:
   dev:
     build: .
+    container_name: dev-fd
     volumes:
-      - ~/workspace:/workspace
-      - ~/.config/fish:/root/.config/fish
-      - ~/.config/nvim:/root/.config/nvim
-      - ~/.config/tmux:/root/.config/tmux
+      - /home/hj/workspace:/workspace
+      - /home/hj/.config/fish:/root/.config/fish
+      - /home/hj/.config/nvim:/root/.config/nvim
+      - /home/hj/.config/tmux:/root/.config/tmux
       - dev-plugins:/root/.local/share/nvim/site
     environment:
       - TERM=xterm-256color
     tty: true
     stdin_open: true
+    ports:
+      # syncthing
+      - "8384:8384"
+      - "22000:22000/tcp"
+      - "21027:21027/udp"
 
 volumes:
   dev-plugins:
