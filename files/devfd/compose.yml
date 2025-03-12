@@ -4,7 +4,7 @@ services:
     build: .
     container_name: dev-fd
     volumes:
-      - /home/hj/workspace:/workspace
+      - /home/hj/workspace:/root/workspace
       - /home/hj/.config/fish:/root/.config/fish
       - /home/hj/.config/nvim:/root/.config/nvim
       - /home/hj/.config/tmux:/root/.config/tmux
