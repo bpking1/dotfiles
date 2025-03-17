@@ -134,6 +134,8 @@ return {
         "typescript",
         "vim",
         "yaml",
+        "todotxt",
+        "text",
       },
     },
   },

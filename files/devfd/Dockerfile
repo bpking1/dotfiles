@@ -51,13 +51,7 @@ WORKDIR /root/workspace
 # 切换到开发用户 (可选)
 # USER developer
 
-# 配置 lazyvim (可选，可以复制自己的配置)
-# COPY .config/nvim /home/developer/.config/nvim
-
-# 暴露端口 (如果需要)
-# EXPOSE 8080
-
 # 启动命令 (根据你的需求修改)
-# CMD ["/bin/bash"]  # 保持容器运行
+CMD ["/usr/bin/fish"]  # 保持容器运行
 # 或者
 # CMD ["tmux", "new-session", "-d"] # 启动 tmux

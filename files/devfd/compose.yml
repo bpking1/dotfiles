@@ -18,6 +18,8 @@ services:
       - "8384:8384"
       - "22000:22000/tcp"
       - "21027:21027/udp"
+      # neovim
+      - "3800:3800"
 
 volumes:
   dev-plugins:
