@@ -42,6 +42,16 @@ RUN curl -sL "https://github.com/sxyazi/yazi/releases/latest/download/yazi-x86_6
     rm yazi.zip && \
     rm -rf yazi-x86_64-unknown-linux-musl
 
+# cliflux
+RUN curl -L "https://github.com/spencerwi/cliflux/releases/latest/download/cliflux_amd64" -o /usr/local/bin/cliflux && chmod +x /usr/local/bin/cliflux
+# chezmoi 同步就行了
+#RUN mkdir -p /root/.config/cliflux && \
+#    cat <<EOF > /root/.config/cliflux/config.toml
+#server_url = "http://123.xyz:8033"
+#api_key = "123456"
+#allow_invalid_certs = true
+#EOF
+
 # 设置工作目录
 WORKDIR /root/workspace
 
