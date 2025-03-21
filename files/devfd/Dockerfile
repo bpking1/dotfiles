@@ -7,8 +7,8 @@ RUN dnf update -y && \
 # 安装 fish
 RUN dnf install -y fish && chsh -s /usr/bin/fish
 
-# 安装 ripgrep, fd, exa, broot, duf, dog, fzf, jq, cheat-bin
-RUN dnf install -y ripgrep fd exa fzf jq cheat gitui lua
+# 安装 ripgrep, fd, exa, broot, duf, dog, fzf, jq, cheat-bin, file(for yazi), bat
+RUN dnf install -y ripgrep fd exa fzf jq cheat gitui lua file bat p7zip p7zip-plugins
 
 # font ,好像不用安装字体，需要在terminal设置nerd fonts就可以了
 # RUN dnf install -y fontconfig fira-code-fonts
