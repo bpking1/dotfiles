@@ -7,8 +7,8 @@ RUN dnf update -y && \
 # 安装 fish
 RUN dnf install -y fish && chsh -s /usr/bin/fish
 
-# 安装 ripgrep, fd, exa, broot, duf, dog, fzf, jq, cheat-bin, file(for yazi), bat
-RUN dnf install -y ripgrep fd exa fzf jq cheat gitui lua file bat p7zip p7zip-plugins
+# 安装 ripgrep, fd, eza, broot, duf, dog, fzf, jq, cheat-bin, file(for yazi), bat
+RUN dnf install -y gcc ripgrep fd eza fzf jq cheat gitui lua file bat p7zip p7zip-plugins --skip-unavailable
 
 # font ,好像不用安装字体，需要在terminal设置nerd fonts就可以了
 # RUN dnf install -y fontconfig fira-code-fonts
@@ -21,7 +21,7 @@ RUN dnf copr enable atim/lazygit -y && \
 RUN dnf install -y dotnet-sdk-9.0
 
 # 安装 syncthing
-RUN dnf install -y syncthing
+#RUN dnf install -y syncthing
 
 # forgit 不好安装
 
@@ -62,6 +62,6 @@ WORKDIR /root/workspace
 # USER developer
 
 # 启动命令 (根据你的需求修改)
-CMD ["/usr/bin/fish"]  # 保持容器运行
-# 或者
-# CMD ["tmux", "new-session", "-d"] # 启动 tmux
+# CMD ["/usr/bin/fish"]  # 保持容器运行
+# 或者启动tmux
+CMD ["tmux", "new-session"] 
