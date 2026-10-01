@@ -1,7 +1,5 @@
 encryption = "gpg"
 
-sourceDir = "{{ .chezmoi.homeDir }}/soft/dotfiles"
-
 [merge]
   command = "nvim"
   args = ["-d", "{{"{{ .Destination }}"}}", "{{"{{ .Source }}"}}", "{{"{{ .Target }}"}}"]
