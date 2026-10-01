@@ -2,7 +2,7 @@
 
 hl.monitor({
     output   = "DP-1",
-    mode     = "3840x2160@144",
+    mode     = "3840x2160@160",   -- 面板 EDID 支持到 160Hz(默认档 144)
     position = "0x0",
     scale    = 1.5,
     cm       = "hdr",   -- HDR 色彩管理(SDR 内容自动色调映射;sdrbrightness 可调 SDR 亮度)
