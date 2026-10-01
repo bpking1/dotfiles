@@ -14,7 +14,9 @@ end
 set --export BUN_INSTALL "$HOME/.bun"
 set --export PATH $BUN_INSTALL/bin $PATH
 export PATH="$HOME/.local/bin:$PATH"
-~/.local/bin/mise activate fish | source
+if test -x ~/.local/bin/mise
+    ~/.local/bin/mise activate fish | source
+end
 
 
 # Added by Antigravity CLI installer
