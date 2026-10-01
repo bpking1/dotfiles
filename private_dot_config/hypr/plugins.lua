@@ -40,5 +40,14 @@ hl.config({
                 threshold = 6.0,
             },
         },
+
+        -- hyprfocus:键盘切换焦点时窗口闪烁(鼠标划过不触发,避免乱闪)
+        -- 动画可选 "flash"(透明度闪)/ "shrink"(收缩)/ "slide"(上滑)
+        hyprfocus = {
+            enable                   = true,
+            keyboard_focus_animation = "flash",
+            mouse_focus_animation    = "none",
+            fade_opacity             = 0.8,
+        },
     },
 })
