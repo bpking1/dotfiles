@@ -6,6 +6,10 @@ hl.config({
         gaps_out    = 5,
         border_size = 3,
 
+        -- 鼠标放到窗口边缘直接拖动调整大小
+        resize_on_border        = true,
+        extend_border_grab_area = 15,
+
         col = {
             active_border   = "rgb(ffc0cb)",
             inactive_border = "rgba(595959aa)",
