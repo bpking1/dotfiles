@@ -5,6 +5,8 @@ hl.monitor({
     mode     = "3840x2160@144",
     position = "0x0",
     scale    = 1.5,
+    cm       = "hdr",   -- HDR 色彩管理(SDR 内容自动色调映射;sdrbrightness 可调 SDR 亮度)
+    vrr      = 1,       -- FreeSync/VRR,若屏幕出现亮度闪烁则删除此行
 })
 
 hl.monitor({
