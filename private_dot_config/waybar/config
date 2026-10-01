@@ -21,10 +21,7 @@
         "temperature",
         "battery",
         "pulseaudio",
-        "backlight",
         "tray",
-        //"custom/weather",
-        "custom/updates",
         "clock"
     ],
 
@@ -87,7 +84,7 @@
     },
     "custom/lock_screen": {
         "format": "",
-        "on-click": "sh -c '(sleep 0.5s; swaylock)' & disown",
+        "on-click": "hyprlock",
         "tooltip": false
     },
 
@@ -181,7 +178,7 @@
     "pulseaudio": {
         "format": "{icon} {volume}",
         "format-muted": "",
-        "on-click": "pamixer -t",
+        "on-click": "wpctl set-mute @DEFAULT_AUDIO_SINK@ toggle",
         "on-click-right": "pavucontrol",
         "scroll-step": 1,
         "format-icons": {
@@ -201,22 +198,13 @@
         "format": "{format_source}",
         "format-source": "",
         "format-source-muted": "",
-        "on-click": "pamixer -m",
+        "on-click": "wpctl set-mute @DEFAULT_AUDIO_SOURCE@ toggle",
         "on-click-right": "pavucontrol",
         "scroll-step": 1,
         "tooltip": true,
         "tooltip-format": " at {volume}%"
     },
 
-    "backlight": {
-        "device": "intel_backlight",
-        "format": "{icon}",
-        "format-alt-click": "click-right",
-        "format-alt": "{icon} {percent}%",
-        "format-icons": ["󰃞", "󰃟", "󰃠"],
-        "on-scroll-up": "~/.config/waybar/scripts/brightness --inc",
-        "on-scroll-down": "~/.config/waybar/scripts/brightness --dec"
-    },
 
     "tray": {
         "icon-size": 16,
@@ -240,13 +228,6 @@
         "tooltip": false
     },
 
-    "custom/updates": {
-        "format": "{}",
-        "exec": "~/.config/waybar/scripts/update-sys",
-        "on-click": "~/.config/waybar/scripts/update-sys update",
-        "interval": 300,
-        "tooltip": true
-    },
 
     "clock": {
         "format": "{:%I:%M %p}",
