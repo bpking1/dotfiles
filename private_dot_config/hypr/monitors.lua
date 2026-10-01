@@ -2,14 +2,11 @@
 
 hl.monitor({
     output   = "DP-1",
-    mode     = "3840x2160@160",   -- 面板 EDID 支持到 160Hz(默认档 144)
+    mode     = "3840x2160@160",
     position = "0x0",
     scale    = 1.5,
-    cm       = "hdr",   -- HDR 色彩管理
-    vrr      = 1,       -- FreeSync/VRR,若屏幕出现亮度闪烁则删除此行
-    -- SDR 内容在 HDR 模式下的亮度(相当于 Windows 的"SDR 内容亮度"滑块)
-    sdr_max_luminance = 200,  -- SDR 白色映射到 200 nits(嫌暗加到 300/400)
-    sdrbrightness     = 1.5,  -- SDR 内容整体亮度乘数
+    -- HDR 在启动期应用会使 F44/Mesa26 下 EGL 崩溃,改为登录后延迟应用(见 autostart.lua)
+    -- cm = "hdr", vrr = 1, sdr_max_luminance = 200, sdrbrightness = 1.5
 })
 
 hl.monitor({

@@ -30,5 +30,8 @@ hl.on("hyprland.start", function()
     hl.exec_cmd("hypridle")
 
     -- 插件加载(插件不跨重启持久, 每次启动需重新载入; -n 成功后弹通知)
-    hl.exec_cmd("sleep 2 && hyprpm reload -n")
+    -- hl.exec_cmd("sleep 2     hl.exec_cmd("sleep 2 && hyprpm reload -n")    hl.exec_cmd("sleep 2 && hyprpm reload -n") hyprpm reload -n")  -- 排查:暂停插件加载
+
+    -- 延迟应用 HDR/FreeSync(启动期应用会在 F44/Mesa26 下崩溃,等合成器就绪再切)
+    hl.exec_cmd("sleep 6 && hyprctl eval 'hl.monitor({ output = \"DP-1\", cm = \"hdr\", vrr = 1, sdr_max_luminance = 200, sdrbrightness = 1.5 })'")
 end)

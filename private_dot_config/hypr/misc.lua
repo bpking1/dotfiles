@@ -7,6 +7,10 @@ hl.config({
         enable_swallow         = true,     -- 终端打开同类窗口时吞并
         animate_manual_resizes = false,
         focus_on_activate      = true,
+
+        -- 规避 0.55+ 的 eglDupNativeFenceFDANDROID EGL_BAD_PARAMETER 崩溃(显式同步栅栏)
+        explicit_sync     = false,
+        explicit_sync_kms = false,
     },
 })
 
