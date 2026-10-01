@@ -41,6 +41,10 @@ hl.config({
             },
         },
 
+        -- 双屏独立工作区插件已停用;其配置键在该构建中未注册,移除
+        -- (恢复插件时如需限制数量,用运行时调用:
+        --  hl.plugin.split_monitor_workspaces.max_workspaces({ monitor = "DP-1", max = 5 }))
+
         -- hyprfocus:键盘切换焦点时窗口闪烁(鼠标划过不触发,避免乱闪)
         -- 动画可选 "flash"(透明度闪)/ "shrink"(收缩)/ "slide"(上滑)
         hyprfocus = {
