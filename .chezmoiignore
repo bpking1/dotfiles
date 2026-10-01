@@ -1,7 +1,0 @@
-# 不参与部署的仓库文件(仅存档)
-arch_user_configuration.json
-executable_install.sh
-executable_dot_start-hypr-amd
-executable_dot_start-hypr-nvidia
-startSunshine.sh
-files
