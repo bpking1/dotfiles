@@ -30,13 +30,13 @@
 
     "custom/launcher": {
         "format": "",
-        "on-click": "pkill rofi || ~/.config/rofi/launcher.sh",
+        "on-click": "hyprlauncher",
         "tooltip": false
     },
 
     "custom/power_btn": {
         "format": "",
-        "on-click": "pkill rofi || ~/.config/rofi/powermenu.sh",
+        "on-click": "wlogout",
         "tooltip": false
     },
     "custom/song": {
