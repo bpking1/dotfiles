@@ -45,7 +45,7 @@ hl.config({
         -- 动画可选 "flash"(透明度闪)/ "shrink"(收缩)/ "slide"(上滑)
         hyprfocus = {
             enable                   = true,
-            keyboard_focus_animation = "flash",
+            keyboard_focus_animation = "shrink",
             mouse_focus_animation    = "none",
             fade_opacity             = 0.8,
         },
