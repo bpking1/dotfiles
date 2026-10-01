@@ -22,7 +22,7 @@ local function floatSmall(name, match)
         name  = name,
         match = match,
         float = true,
-        size  = "960x540",
+        size  = { "960", "540" },
         move  = { "(monitor_w*0.25)", "(monitor_h*0.5)-(window_h*0.5)" },
     })
 end
@@ -37,7 +37,7 @@ hl.window_rule({
     name     = "termfloat",
     match    = { class = "^termfloat$" },
     float    = true,
-    size     = "960x540",
+    size     = { "960", "540" },
     move     = { "(monitor_w*0.25)", "(monitor_h*0.5)-(window_h*0.5)" },
     rounding = 5,
 })
@@ -48,7 +48,7 @@ hl.window_rule({
     match    = { class = "^danmufloat$" },
     float    = true,
     pin      = true,
-    size     = "960x540",
+    size     = { "960", "540" },
     move     = { "(monitor_w*0.25)", "(monitor_h*0.5)-(window_h*0.5)" },
     rounding = 5,
 })

@@ -122,32 +122,34 @@ hl.bind(mainMod .. " + Super_L", hl.dsp.exec_cmd("wlogout")) -- 电源菜单(替
 ------------------------------------
 ---- 音量 / 亮度 / 媒体 ----
 ------------------------------------
-hl.bind(", XF86AudioRaiseVolume", hl.dsp.exec_cmd("wpctl set-volume -l 1 @DEFAULT_AUDIO_SINK@ 5%+"), { repeating = true })
-hl.bind(", XF86AudioLowerVolume", hl.dsp.exec_cmd("wpctl set-volume @DEFAULT_AUDIO_SINK@ 5%-"), { repeating = true })
-hl.bind(", XF86AudioMute",        hl.dsp.exec_cmd("wpctl set-mute @DEFAULT_AUDIO_SINK@ toggle"), { locked = true })
-hl.bind(", XF86AudioMicMute",     hl.dsp.exec_cmd("wpctl set-mute @DEFAULT_AUDIO_SOURCE@ toggle"), { locked = true })
+hl.bind("XF86AudioRaiseVolume", hl.dsp.exec_cmd("wpctl set-volume -l 1 @DEFAULT_AUDIO_SINK@ 5%+"), { repeating = true })
+hl.bind("XF86AudioLowerVolume", hl.dsp.exec_cmd("wpctl set-volume @DEFAULT_AUDIO_SINK@ 5%-"), { repeating = true })
+hl.bind("XF86AudioMute",        hl.dsp.exec_cmd("wpctl set-mute @DEFAULT_AUDIO_SINK@ toggle"), { locked = true })
+hl.bind("XF86AudioMicMute",     hl.dsp.exec_cmd("wpctl set-mute @DEFAULT_AUDIO_SOURCE@ toggle"), { locked = true })
 
-hl.bind(", XF86MonBrightnessUp",   hl.dsp.exec_cmd("brightnessctl -e4 -n2 set 5%+"), { repeating = true })
-hl.bind(", XF86MonBrightnessDown", hl.dsp.exec_cmd("brightnessctl -e4 -n2 set 5%-"), { repeating = true })
+hl.bind("XF86MonBrightnessUp",   hl.dsp.exec_cmd("brightnessctl -e4 -n2 set 5%+"), { repeating = true })
+hl.bind("XF86MonBrightnessDown", hl.dsp.exec_cmd("brightnessctl -e4 -n2 set 5%-"), { repeating = true })
 
-hl.bind(", XF86AudioPlay", hl.dsp.exec_cmd("mpc -q toggle"))
-hl.bind(", XF86AudioNext", hl.dsp.exec_cmd("mpc -q next"))
-hl.bind(", XF86AudioPrev", hl.dsp.exec_cmd("mpc -q prev"))
+hl.bind("XF86AudioPlay", hl.dsp.exec_cmd("mpc -q toggle"))
+hl.bind("XF86AudioNext", hl.dsp.exec_cmd("mpc -q next"))
+hl.bind("XF86AudioPrev", hl.dsp.exec_cmd("mpc -q prev"))
 
 ------------------------------------
 ---- submap:调整窗口大小 ----
 ------------------------------------
 hl.bind(mainMod .. " + R", hl.dsp.submap("resize"))
 
-hl.bind("resize + right", hl.dsp.window.resize({ x = 15,  y = 0,  relative = true }), { repeating = true })
-hl.bind("resize + left",  hl.dsp.window.resize({ x = -15, y = 0,  relative = true }), { repeating = true })
-hl.bind("resize + up",    hl.dsp.window.resize({ x = 0,   y = -15, relative = true }), { repeating = true })
-hl.bind("resize + down",  hl.dsp.window.resize({ x = 0,   y = 15,  relative = true }), { repeating = true })
-hl.bind("resize + l",     hl.dsp.window.resize({ x = 15,  y = 0,  relative = true }), { repeating = true })
-hl.bind("resize + h",     hl.dsp.window.resize({ x = -15, y = 0,  relative = true }), { repeating = true })
-hl.bind("resize + k",     hl.dsp.window.resize({ x = 0,   y = -15, relative = true }), { repeating = true })
-hl.bind("resize + j",     hl.dsp.window.resize({ x = 0,   y = 15,  relative = true }), { repeating = true })
-hl.bind("resize + escape", hl.dsp.submap("reset"))
+hl.define_submap("resize", function()
+    hl.bind("right", hl.dsp.window.resize({ x = 15,  y = 0,  relative = true }), { repeating = true })
+    hl.bind("left",  hl.dsp.window.resize({ x = -15, y = 0,  relative = true }), { repeating = true })
+    hl.bind("up",    hl.dsp.window.resize({ x = 0,   y = -15, relative = true }), { repeating = true })
+    hl.bind("down",  hl.dsp.window.resize({ x = 0,   y = 15,  relative = true }), { repeating = true })
+    hl.bind("l",     hl.dsp.window.resize({ x = 15,  y = 0,  relative = true }), { repeating = true })
+    hl.bind("h",     hl.dsp.window.resize({ x = -15, y = 0,  relative = true }), { repeating = true })
+    hl.bind("k",     hl.dsp.window.resize({ x = 0,   y = -15, relative = true }), { repeating = true })
+    hl.bind("j",     hl.dsp.window.resize({ x = 0,   y = 15,  relative = true }), { repeating = true })
+    hl.bind("escape", hl.dsp.submap("reset"))
+end)
 
 -- 直接 CTRL+SHIFT+方向/vim 键调整大小
 hl.bind("CTRL + SHIFT + l", hl.dsp.window.resize({ x = 15,  y = 0,  relative = true }), { repeating = true })
