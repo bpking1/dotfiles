@@ -51,14 +51,13 @@ hl.bind(mainMod .. " + down",  hl.dsp.focus({ direction = "down" }))
 ---- 工作区切换 ----
 ------------------------------------
 for i = 1, 10 do
-    -- split-monitor-workspaces 插件:双屏各自独立的 1~0 工作区
-    hl.bind(mainMod .. " + " .. (i % 10), function() hl.plugin.split_monitor_workspaces.workspace(i) end)
-    hl.bind(mainMod .. " + SHIFT + " .. (i % 10), function() hl.plugin.split_monitor_workspaces.move_to_workspace_silent(i) end)
-    hl.bind(mainMod .. " + CTRL + " .. (i % 10), function() hl.plugin.split_monitor_workspaces.move_to_workspace(i) end)
-    -- 全局工作区(插件出问题时取消注释换回去):
-    -- hl.bind(mainMod .. " + " .. (i % 10), hl.dsp.focus({ workspace = i }))
-    -- hl.bind(mainMod .. " + SHIFT + " .. (i % 10), hl.dsp.window.move({ workspace = i, follow = false }))
-    -- hl.bind(mainMod .. " + CTRL + " .. (i % 10), hl.dsp.window.move({ workspace = i }))
+    hl.bind(mainMod .. " + " .. (i % 10), hl.dsp.focus({ workspace = i }))
+    hl.bind(mainMod .. " + CTRL + " .. (i % 10), hl.dsp.window.move({ workspace = i }))
+    hl.bind(mainMod .. " + SHIFT + " .. (i % 10), hl.dsp.window.move({ workspace = i, follow = false }))
+    -- split-monitor-workspaces 插件版(双屏独立编号,已停用;要用换回这三行):
+    -- hl.bind(mainMod .. " + " .. (i % 10), function() hl.plugin.split_monitor_workspaces.workspace(i) end)
+    -- hl.bind(mainMod .. " + SHIFT + " .. (i % 10), function() hl.plugin.split_monitor_workspaces.move_to_workspace_silent(i) end)
+    -- hl.bind(mainMod .. " + CTRL + " .. (i % 10), function() hl.plugin.split_monitor_workspaces.move_to_workspace(i) end)
 end
 
 hl.bind(mainMod .. " + L", hl.dsp.focus({ workspace = "-1" }))
