@@ -28,4 +28,7 @@ hl.on("hyprland.start", function()
 
     -- 空闲管理(自动锁屏/息屏, 见 hypridle.conf)
     hl.exec_cmd("hypridle")
+
+    -- 插件加载(插件不跨重启持久, 每次启动需重新载入; -n 成功后弹通知)
+    hl.exec_cmd("sleep 2 && hyprpm reload -n")
 end)

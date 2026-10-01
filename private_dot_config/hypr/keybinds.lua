@@ -126,8 +126,8 @@ hl.bind(mainMod .. " + Super_L", hl.dsp.exec_cmd("wlogout")) -- 电源菜单(替
 ------------------------------------
 ---- 官方插件 ----
 ------------------------------------
--- hyprexpo:全局工作区概览
-hl.bind(mainMod .. " + grave", hl.plugin.hyprexpo.expo)
+-- hyprexpo:全局工作区概览(函数包裹:启动时插件未加载也不报错)
+hl.bind(mainMod .. " + grave", function() hl.dispatch(hl.plugin.hyprexpo.expo) end)
 
 -- scrolling 布局试玩开关(PaperWM 式横向画布,全局切换 dwindle/scrolling)
 hl.bind(mainMod .. " + CTRL + L", hl.dsp.exec_cmd("hyprctl getoption -j general:layout | grep -q scrolling && hyprctl keyword general:layout dwindle > /dev/null || hyprctl keyword general:layout scrolling > /dev/null"))
