@@ -51,9 +51,14 @@ hl.bind(mainMod .. " + down",  hl.dsp.focus({ direction = "down" }))
 ---- 工作区切换 ----
 ------------------------------------
 for i = 1, 10 do
-    hl.bind(mainMod .. " + " .. (i % 10), hl.dsp.focus({ workspace = i }))
-    hl.bind(mainMod .. " + CTRL + " .. (i % 10), hl.dsp.window.move({ workspace = i }))
-    hl.bind(mainMod .. " + SHIFT + " .. (i % 10), hl.dsp.window.move({ workspace = i, follow = false }))
+    -- split-monitor-workspaces 插件:双屏各自独立的 1~0 工作区
+    hl.bind(mainMod .. " + " .. (i % 10), function() hl.plugin.split_monitor_workspaces.workspace(i) end)
+    hl.bind(mainMod .. " + SHIFT + " .. (i % 10), function() hl.plugin.split_monitor_workspaces.move_to_workspace_silent(i) end)
+    hl.bind(mainMod .. " + CTRL + " .. (i % 10), function() hl.plugin.split_monitor_workspaces.move_to_workspace(i) end)
+    -- 全局工作区(插件出问题时取消注释换回去):
+    -- hl.bind(mainMod .. " + " .. (i % 10), hl.dsp.focus({ workspace = i }))
+    -- hl.bind(mainMod .. " + SHIFT + " .. (i % 10), hl.dsp.window.move({ workspace = i, follow = false }))
+    -- hl.bind(mainMod .. " + CTRL + " .. (i % 10), hl.dsp.window.move({ workspace = i }))
 end
 
 hl.bind(mainMod .. " + L", hl.dsp.focus({ workspace = "-1" }))
@@ -118,6 +123,18 @@ hl.bind(mainMod .. " + bracketright", hl.dsp.exec_cmd('grim -g "$(slurp)" - | sw
 -- 启动器 / 电源菜单
 hl.bind("Super_L", hl.dsp.exec_cmd("hyprlauncher"))          -- 应用启动器(替代 rofi launcher.sh)
 hl.bind(mainMod .. " + Super_L", hl.dsp.exec_cmd("wlogout")) -- 电源菜单(替代 rofi powermenu.sh)
+
+------------------------------------
+---- 官方插件 ----
+------------------------------------
+-- hyprexpo:全局工作区概览
+hl.bind(mainMod .. " + grave", hl.plugin.hyprexpo.expo)
+
+-- scrolling 布局试玩开关(PaperWM 式横向画布,全局切换 dwindle/scrolling)
+hl.bind(mainMod .. " + CTRL + L", hl.dsp.exec_cmd("hyprctl getoption -j general:layout | grep -q scrolling && hyprctl keyword general:layout dwindle > /dev/null || hyprctl keyword general:layout scrolling > /dev/null"))
+
+-- hyprsunset 护眼模式开关(4500K)
+hl.bind(mainMod .. " + F10", hl.dsp.exec_cmd("pgrep -x hyprsunset > /dev/null && pkill hyprsunset || hyprsunset -t 4500"))
 
 ------------------------------------
 ---- 音量 / 亮度 / 媒体 ----

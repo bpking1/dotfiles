@@ -179,7 +179,7 @@
         "format": "{icon} {volume}",
         "format-muted": "",
         "on-click": "wpctl set-mute @DEFAULT_AUDIO_SINK@ toggle",
-        "on-click-right": "pavucontrol",
+        "on-click-right": "hyprpwcenter",
         "scroll-step": 1,
         "format-icons": {
             "headphone": "",
@@ -199,7 +199,7 @@
         "format-source": "",
         "format-source-muted": "",
         "on-click": "wpctl set-mute @DEFAULT_AUDIO_SOURCE@ toggle",
-        "on-click-right": "pavucontrol",
+        "on-click-right": "hyprpwcenter",
         "scroll-step": 1,
         "tooltip": true,
         "tooltip-format": " at {volume}%"
