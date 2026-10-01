@@ -15,3 +15,4 @@ require("workspaces")    -- 工作区行为
 require("misc")          -- 杂项 + dwindle 布局
 require("windowrules")   -- 窗口规则
 require("keybinds")      -- 按键绑定
+require("plugins")       -- 插件配置(hyprbars/borders++/dynamic-cursors)
