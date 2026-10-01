@@ -4,20 +4,22 @@
 hl.config({
     plugin = {
         -- 标题栏:Catppuccin Mocha 配色 + 霞鹜文楷
-        hyprbars = {
-            bar_height            = 22,
-            bar_color             = "rgb(1e1e2e)",   -- Mocha Base
-            bar_blur              = true,
-            bar_part_of_window    = true,
-            bar_precedence_over_border = false,
-            bar_text_size         = 11,
-            bar_text_font         = "LXGW WenKai GB Screen",
-            bar_text_align        = "center",
-            bar_button_padding    = 5,
-            bar_padding           = 7,
-            col                   = { text = "rgb(cdd6f4)" },  -- Mocha Text
-            on_double_click       = "hyprctl dispatch fullscreen 1",
-        },
+        -- (暂时不用 hyprbars 了,已 hyprpm disable;想用时:
+        --  1. hyprpm enable hyprbars  2. 取消下面的注释)
+        -- hyprbars = {
+        --     bar_height            = 22,
+        --     bar_color             = "rgb(1e1e2e)",   -- Mocha Base
+        --     bar_blur              = true,
+        --     bar_part_of_window    = true,
+        --     bar_precedence_over_border = false,
+        --     bar_text_size         = 11,
+        --     bar_text_font         = "LXGW WenKai GB Screen",
+        --     bar_text_align        = "center",
+        --     bar_button_padding    = 5,
+        --     bar_padding           = 7,
+        --     col                   = { text = "rgb(cdd6f4)" },  -- Mocha Text
+        --     on_double_click       = "hyprctl dispatch fullscreen 1",
+        -- },
 
         -- 双描边:紧贴窗口一圈粉色呼应 active_border
         borders_plus_plus = {
