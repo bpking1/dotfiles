@@ -224,7 +224,7 @@
         "tooltip-format-connected": "{num_connections} 台设备\n{device_enumerate}",
         "tooltip-format-enumerate-connected": "󰂱 {device_alias}",
         "tooltip-format-enumerate-connected-battery": "󰂱 {device_alias} | 电量 {device_battery_percentage}%",
-        "on-click": "kitty --class termfloat -e bluetoothctl",
+        "on-click": "blueman-manager",
         "on-click-middle": "bluetoothctl power on",
         "on-click-right": "bluetoothctl power off"
     },
