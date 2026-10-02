@@ -72,7 +72,10 @@ hl.bind(mainMod .. " + T", function()   -- Telegram(64gram 未安装时仅切换
     hl.dispatch(hl.dsp.focus({ workspace = "name:TG" }))
     hl.dispatch(hl.dsp.exec_cmd("64gram-desktop"))
 end)
-hl.bind(mainMod .. " + M", hl.dsp.focus({ workspace = "name:Music" }))
+hl.bind(mainMod .. " + M", function()   -- musicfox 网易云音乐 TUI
+    hl.dispatch(hl.dsp.focus({ workspace = "name:Music" }))
+    hl.dispatch(hl.dsp.exec_cmd("kitty --class musicfox -e musicfox"))
+end)
 hl.bind(mainMod .. " + N", hl.dsp.focus({ workspace = "name:Note" }))
 hl.bind(mainMod .. " + O", function()   -- Obsidian 工作区 + waybar 开关
     hl.dispatch(hl.dsp.focus({ workspace = "name:OB" }))
