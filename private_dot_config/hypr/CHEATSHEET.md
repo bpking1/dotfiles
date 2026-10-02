@@ -88,3 +88,13 @@
 | 按键 | 功能 |
 |---|---|
 | `ALT + Shift + Q` | **退出 Hyprland** |
+
+## 🆕 2026 新增
+| 按键 | 功能 |
+|---|---|
+| `ALT + I` | 通知中心面板(swaync,含历史/勿扰) |
+| `ALT + Shift + R` | 屏幕录制开关(wf-recorder → ~/视频/) |
+| `音量键` / `亮度键` | 屏幕弹出 OSD 指示条(swayosd) |
+| `ALT + ~` | 全局工作区概览(hyprexpo 插件) |
+| `ALT + Ctrl + L` | 切换 scrolling 布局试玩 |
+| `ALT + F10` | 护眼模式开关(hyprsunset 4500K) |
