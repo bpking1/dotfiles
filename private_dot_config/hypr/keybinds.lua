@@ -184,3 +184,5 @@ hl.bind("CTRL + SHIFT + j", hl.dsp.window.resize({ x = 0,   y = 15,  relative = 
 ------------------------------------
 hl.bind(mainMod .. " + mouse:272", hl.dsp.window.drag(),   { mouse = true })
 hl.bind(mainMod .. " + mouse:273", hl.dsp.window.resize(), { mouse = true })
+-- qq-float 悬浮聊天窗开关(隐藏/显示,进程常驻不掉线)
+hl.bind(mainMod .. " + Q", hl.dsp.exec_cmd("$HOME/.config/hypr/scripts/qq-float-toggle"))
