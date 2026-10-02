@@ -55,14 +55,12 @@ hl.window_rule({
 
 -- IM/音乐窗口半透明
 hl.window_rule({ name = "tg-opacity",  match = { title = "^(TDesktop|Telegram|64Gram)$" }, opacity = "0.95" })
-hl.window_rule({ name = "qq-opacity",  match = { title = "^QQ$" },                         opacity = "0.95" })
 hl.window_rule({ name = "ncm-opacity", match = { title = "NetEase Cloud Music Gtk4" },     opacity = "0.95" })
 
 -- kitty 进场动画
 hl.window_rule({ name = "kitty-anim", match = { class = "^kitty$" }, animation = "slide right" })
 
 -- 按窗口自动分配工作区
-hl.window_rule({ name = "ws-qq",    match = { title = "^Icalingua\\+\\+$" },            workspace = "name:QQ" })
 hl.window_rule({ name = "ws-tg",    match = { title = "^(TDesktop|Telegram|64Gram)$" }, workspace = "name:TG" })
 hl.window_rule({ name = "ws-music", match = { class = "^musicfox$" },                   workspace = "name:Music" })
 hl.window_rule({ name = "ws-note",  match = { class = "^notes$" },                      workspace = "name:Note" })
