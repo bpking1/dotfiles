@@ -1,0 +1,12 @@
+{
+  "url": "http://localhost:8787",
+  "token": "826eaa81c8aa17ac31937cc718fea53ededbe136895d0ec9b8cd732dcc7f45ad",
+  "directories": [
+    "/vol1/1000/soft/sb/obsidian-vault/3_Resources/读书笔记/SICP",
+    "/run/host/vol1/1000/soft/sb/obsidian-vault/3_Resources/读书笔记/SICP"
+  ],
+  "reading": false,
+  "scope": "",
+  "max_rank": 0,
+  "frequency": "bnc"
+}
