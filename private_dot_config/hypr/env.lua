@@ -1,6 +1,7 @@
 -- 环境变量
 
 hl.env("XCURSOR_SIZE", "24")
+hl.env("XCURSOR_THEME", "Bibata-Modern-Ice")
 hl.env("HYPRCURSOR_SIZE", "24")
 
 -- fcitx5 输入法:Wayland 下推荐不设 GTK/QT IM 模块,

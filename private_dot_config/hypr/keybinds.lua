@@ -115,6 +115,12 @@ hl.bind(mainMod .. " + Z", hl.dsp.exec_cmd("zotero"))
 -- 锁屏(swaylock -> 官方 hyprlock)
 hl.bind(mainMod .. " + SHIFT + X", hl.dsp.exec_cmd("hyprlock"))
 
+-- 通知中心面板(swaync)
+hl.bind(mainMod .. " + I", hl.dsp.exec_cmd("swaync-client -t -sw"))
+
+-- 屏幕录制开关(wf-recorder,无音频,保存到 ~/视频)
+hl.bind(mainMod .. " + SHIFT + R", hl.dsp.exec_cmd('pgrep -x wf-recorder > /dev/null && pkill -x wf-recorder || wf-recorder -f \"$HOME/视频/$(date +%Y%m%d-%H%M%S).mp4\"'))
+
 -- 截图
 hl.bind(mainMod .. " + bracketleft", hl.dsp.exec_cmd('grimblast --notify --cursor copysave area ~/图片/$(date "+%Y-%m-%d"T"%H:%M:%S_no_watermark").png'))
 hl.bind(mainMod .. " + bracketright", hl.dsp.exec_cmd('grim -g "$(slurp)" - | swappy -f -'))
@@ -138,13 +144,13 @@ hl.bind(mainMod .. " + F10", hl.dsp.exec_cmd("pgrep -x hyprsunset > /dev/null &&
 ------------------------------------
 ---- 音量 / 亮度 / 媒体 ----
 ------------------------------------
-hl.bind("XF86AudioRaiseVolume", hl.dsp.exec_cmd("wpctl set-volume -l 1 @DEFAULT_AUDIO_SINK@ 5%+"), { repeating = true })
-hl.bind("XF86AudioLowerVolume", hl.dsp.exec_cmd("wpctl set-volume @DEFAULT_AUDIO_SINK@ 5%-"), { repeating = true })
-hl.bind("XF86AudioMute",        hl.dsp.exec_cmd("wpctl set-mute @DEFAULT_AUDIO_SINK@ toggle"), { locked = true })
+hl.bind("XF86AudioRaiseVolume", hl.dsp.exec_cmd("swayosd-client --output-volume raise"), { repeating = true })
+hl.bind("XF86AudioLowerVolume", hl.dsp.exec_cmd("swayosd-client --output-volume lower"), { repeating = true })
+hl.bind("XF86AudioMute",        hl.dsp.exec_cmd("swayosd-client --output-volume mute-toggle"), { locked = true })
 hl.bind("XF86AudioMicMute",     hl.dsp.exec_cmd("wpctl set-mute @DEFAULT_AUDIO_SOURCE@ toggle"), { locked = true })
 
-hl.bind("XF86MonBrightnessUp",   hl.dsp.exec_cmd("brightnessctl -e4 -n2 set 5%+"), { repeating = true })
-hl.bind("XF86MonBrightnessDown", hl.dsp.exec_cmd("brightnessctl -e4 -n2 set 5%-"), { repeating = true })
+hl.bind("XF86MonBrightnessUp",   hl.dsp.exec_cmd("swayosd-client --brightness +5"), { repeating = true })
+hl.bind("XF86MonBrightnessDown", hl.dsp.exec_cmd("swayosd-client --brightness -5"), { repeating = true })
 
 hl.bind("XF86AudioPlay", hl.dsp.exec_cmd("mpc -q toggle"))
 hl.bind("XF86AudioNext", hl.dsp.exec_cmd("mpc -q next"))

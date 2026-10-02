@@ -8,6 +8,10 @@ hl.on("hyprland.start", function()
     -- 官方 polkit 认证代理(替代旧的 polkit-kde-authentication-agent)
     hl.exec_cmd("systemctl --user start hyprpolkitagent.service")
 
+    -- OSD 服务器(音量/亮度/大小写指示)
+    hl.exec_cmd("swayosd-server")
+    hl.exec_cmd("swayosd-libinput-backend")
+
     -- 输入法
     hl.exec_cmd("fcitx5 -d")
 
@@ -16,7 +20,7 @@ hl.on("hyprland.start", function()
 
     -- 状态栏 / 通知 / 托盘
     hl.exec_cmd("waybar")
-    hl.exec_cmd("mako")
+    hl.exec_cmd("swaync")
     hl.exec_cmd("nm-applet --indicator")
 
     -- 剪贴板历史
