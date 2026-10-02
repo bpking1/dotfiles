@@ -1,6 +1,7 @@
 -- 插件配置(hyprbars / borders-plus-plus / dynamic-cursors)
 -- 写法参考官方 README:hl.config({ plugin = { <插件> = {...} } })
 
+hl.on("config.reloaded", function()
 hl.config({
     plugin = {
         -- 标题栏:Catppuccin Mocha 配色 + 霞鹜文楷
@@ -55,3 +56,4 @@ hl.config({
         },
     },
 })
+end)
