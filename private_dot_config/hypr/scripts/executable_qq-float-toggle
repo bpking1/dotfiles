@@ -11,6 +11,5 @@ if [ "$WS" != "special:qq" ]; then
 else
     HOME_WS=$(cat /tmp/qq-float-home 2>/dev/null || echo 1)
     hyprctl dispatch "hl.dsp.window.move({ window = \"address:$ADDR\", workspace = \"$HOME_WS\" })" > /dev/null
-    hyprctl dispatch "hl.dsp.window.move({ window = \"address:$ADDR\", x = 1500, y = 60 })" > /dev/null
     hyprctl dispatch 'hl.dsp.window.pin({ window = "address:'$ADDR'", action = "enable" })' > /dev/null
 fi
