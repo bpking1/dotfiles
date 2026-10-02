@@ -1,5 +1,8 @@
 if status is-interactive
     # Commands to run in interactive sessions can go here
+
+    # gpg 签名（git commit）时在当前终端弹出密码输入
+    set -gx GPG_TTY (tty)
 end
 # for nvidia driver tarui bug,setted in hyprland conf
 # set -x WEBKIT_DISABLE_DMABUF_RENDERER 1
