@@ -67,10 +67,7 @@ hl.bind(mainMod .. " + comma",  hl.dsp.focus({ workspace = "e-1" }))
 hl.bind(mainMod .. " + slash",  hl.dsp.focus({ workspace = "previous" }))
 
 -- 命名工作区 + 启动对应应用(旧配置里同键绑定了两条,这里合并)
-hl.bind(mainMod .. " + Q", function()   -- QQ
-    hl.dispatch(hl.dsp.focus({ workspace = "name:QQ" }))
-    hl.dispatch(hl.dsp.exec_cmd("flatpak run com.qq.QQ"))
-end)
+-- ALT+Q 已改为 qq-float 悬浮窗开关(见下方),旧的"跳QQ工作区+linuxqq"绑定移除
 hl.bind(mainMod .. " + T", function()   -- Telegram(64gram 未安装时仅切换工作区)
     hl.dispatch(hl.dsp.focus({ workspace = "name:TG" }))
     hl.dispatch(hl.dsp.exec_cmd("64gram-desktop"))
