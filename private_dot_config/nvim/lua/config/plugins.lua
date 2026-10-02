@@ -18,6 +18,7 @@ if not (vim.uv or vim.loop).fs_stat(path_package) then
   end
 end
 
+vim.opt.runtimepath:prepend(path_package) -- 首次克隆后立即加入 rtp,无需重启
 require("mini.deps").setup({})
 
 local now, later = MiniDeps.now, MiniDeps.later
