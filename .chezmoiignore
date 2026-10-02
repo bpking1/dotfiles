@@ -1,0 +1,7 @@
+{{ if eq .chezmoi.hostname "fn" }}
+{{/* headless 服务器(fn):忽略桌面相关配置 */}}
+.config/hypr
+.config/waybar
+.config/fontconfig
+图片
+{{ end }}
