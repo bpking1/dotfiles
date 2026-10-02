@@ -21,6 +21,9 @@ hl.on("hyprland.start", function()
     -- 状态栏 / 通知 / 托盘
     hl.exec_cmd("waybar")
     hl.exec_cmd("swaync")
+
+    -- 悬浮 QQ 聊天窗
+    hl.exec_cmd("qq-float")
     hl.exec_cmd("nm-applet --indicator")
 
     -- 剪贴板历史

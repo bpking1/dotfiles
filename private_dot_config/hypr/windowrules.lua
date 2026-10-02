@@ -70,3 +70,13 @@ hl.window_rule({ name = "ws-ob",    match = { title = "^Obsidian$" },           
 
 -- firefox 不做模糊
 hl.window_rule({ name = "firefox-noblur", match = { class = "^firefox$" }, no_blur = true })
+
+-- qq-float:悬浮 QQ 聊天窗(置顶小窗,固定右上区域,所有工作区可见)
+hl.window_rule({
+    name  = "qq-float-chat",
+    match = { class = "^qq-float$" },
+    float = true,
+    pin   = true,   -- 需与 float 同用
+    size  = { "380", "560" },
+    move  = { "1500", "60" },
+})
