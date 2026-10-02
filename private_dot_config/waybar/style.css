@@ -64,6 +64,7 @@ tooltip label {
 #pulseaudio,
 #network,
 #bluetooth,
+#custom-submap,
 #tray,
 #temperature,
 #backlight {
@@ -82,6 +83,7 @@ tooltip label {
 #pulseaudio,
 #network,
 #bluetooth,
+#custom-submap,
 #tray,
 #temperature,
 #backlight {
@@ -136,5 +138,10 @@ tooltip label {
 /* 录屏指示:红色 REC */
 #custom-recorder {
     color: #f38ba8;
+    font-weight: bold;
+}
+
+#custom-submap {
+    color: #e92d4d;
     font-weight: bold;
 }
