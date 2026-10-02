@@ -78,6 +78,10 @@ hl.bind(mainMod .. " + O", function()   -- Obsidian 工作区 + waybar 开关
     hl.dispatch(hl.dsp.focus({ workspace = "name:OB" }))
     hl.dispatch(hl.dsp.exec_cmd("killall -SIGUSR1 waybar || true"))
 end)
+hl.bind(mainMod .. " + D", function()   -- Simple Live 直播播放器(B站/斗鱼/虎牙/抖音)
+    hl.dispatch(hl.dsp.focus({ workspace = "name:Live" }))
+    hl.dispatch(hl.dsp.exec_cmd("$HOME/.local/opt/simple-live/simple_live_app"))
+end)
 
 ------------------------------------
 ---- 特殊工作区(scratchpad) ----

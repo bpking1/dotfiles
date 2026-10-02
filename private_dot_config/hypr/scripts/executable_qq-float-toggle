@@ -7,7 +7,7 @@ WS=$(echo "$INFO" | cut -d' ' -f3)
 if [ "$WS" != "special:qq" ]; then
     echo "$WS" > /tmp/qq-float-home
     hyprctl dispatch 'hl.dsp.window.pin({ window = "address:'$ADDR'", action = "disable" })' > /dev/null
-    hyprctl dispatch "hl.dsp.window.move({ window = \"address:$ADDR\", workspace = \"special:qq\" })" > /dev/null
+    hyprctl dispatch "hl.dsp.window.move({ window = \"address:$ADDR\", workspace = \"special:qq\", follow = false })" > /dev/null
 else
     HOME_WS=$(cat /tmp/qq-float-home 2>/dev/null || echo 1)
     hyprctl dispatch "hl.dsp.window.move({ window = \"address:$ADDR\", workspace = \"$HOME_WS\" })" > /dev/null
