@@ -217,8 +217,8 @@
     "bluetooth": {
         "format": "󰂯",
         "format-disabled": "󰂲",
-        "format-connected": "󰂱 {num_connections}",
-        "format-connected-battery": "󰂱 {device_alias} {device_battery_percentage}%",
+        "format-connected": "󰂱",
+        "format-connected-battery": "󰂱",
         "tooltip-format": "控制器: {controller_address}",
         "tooltip-format-disabled": "蓝牙已关闭(中键开启)",
         "tooltip-format-connected": "{num_connections} 台设备\n{device_enumerate}",
