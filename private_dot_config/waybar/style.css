@@ -131,3 +131,8 @@ tooltip label {
     border-left: 0px;
     border-right: 0px;
 }
+/* 录屏指示:红色 REC */
+#custom-recorder {
+    color: #f38ba8;
+    font-weight: bold;
+}

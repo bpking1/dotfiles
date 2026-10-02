@@ -119,7 +119,7 @@ hl.bind(mainMod .. " + SHIFT + X", hl.dsp.exec_cmd("hyprlock"))
 hl.bind(mainMod .. " + I", hl.dsp.exec_cmd("swaync-client -t -sw"))
 
 -- 屏幕录制开关(wf-recorder,无音频,保存到 ~/视频)
-hl.bind(mainMod .. " + SHIFT + R", hl.dsp.exec_cmd('pgrep -x wf-recorder > /dev/null && pkill -x wf-recorder || wf-recorder -o $(hyprctl monitors -j | jq -r ".[] | select(.focused == true).name") -f \"$HOME/视频/$(date +%Y%m%d-%H%M%S).mp4\"'))
+hl.bind(mainMod .. " + SHIFT + R", hl.dsp.exec_cmd("$HOME/.config/waybar/scripts/rec-toggle"))
 
 -- 截图
 hl.bind(mainMod .. " + bracketleft", hl.dsp.exec_cmd('grimblast --notify --cursor copysave area ~/图片/$(date "+%Y-%m-%d"T"%H:%M:%S_no_watermark").png'))

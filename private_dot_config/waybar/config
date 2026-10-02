@@ -21,7 +21,7 @@
         "temperature",
         "battery",
         "pulseaudio",
-        "tray",
+        "tray","custom/recorder",
         "clock"
     ],
 
@@ -82,6 +82,14 @@
                    "on-click-right": "mode"
                    }
     },
+    "custom/recorder": {
+        "format": "{}",
+        "exec": "$HOME/.config/waybar/scripts/rec-status",
+        "interval": 2,
+        "tooltip": true,
+        "on-click": "$HOME/.config/waybar/scripts/rec-toggle"
+    },
+
     "custom/lock_screen": {
         "format": "",
         "on-click": "hyprlock",

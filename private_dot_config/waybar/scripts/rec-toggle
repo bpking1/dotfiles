@@ -1,0 +1,12 @@
+#!/bin/bash
+FDIR="$HOME/视频"
+mkdir -p "$FDIR"
+if pgrep -x wf-recorder > /dev/null; then
+    pkill -x wf-recorder
+    NEWEST=$(ls -t "$FDIR"/*.mp4 2>/dev/null | head -1)
+    notify-send "⏹ 录屏已停止" "已保存: ${NEWEST##*/}" -i video-display
+else
+    MON=$(hyprctl monitors -j | jq -r '.[] | select(.focused == true).name')
+    notify-send "⏺ 开始录屏" "输出: $MON" -i video-display
+    wf-recorder -o "$MON" -f "$FDIR/$(date +%Y%m%d-%H%M%S).mp4"
+fi

@@ -1,0 +1,6 @@
+#!/bin/bash
+# 录屏状态:运行中输出 "● REC 时长",空闲时无输出(模块自动隐藏)
+PID=$(pgrep -x wf-recorder | head -1)
+[ -z "$PID" ] && exit 0
+ELAPSED=$(ps -o etime= -p "$PID" | tr -d ' ')
+echo "● REC $ELAPSED"
