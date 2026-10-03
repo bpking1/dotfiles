@@ -92,9 +92,11 @@ if [ -t 0 ] && { [ ! -f "$SEL_FILE" ] || [ "${RECONFIGURE:-0}" = "1" ]; }; then
         printf ' %2d) %s %s  [%s]\n' $((i+1)) "$mark" "${NAMES[$i]}" "${APP_STATE[$k]}"
       fi
     done
-    read -rp "编号切换(可多个, 空格分隔) / a 全选 / n 全不选 / v 显示或隐藏包明细 / 回车确认: " ans
+    echo "操作: 输入编号(如 3 5 7)取消/重新勾选 | a 全选 | n 全不选 | v 显示/隐藏包明细 | q 退出(不安装)"
+    read -rp "直接按回车 = 按当前勾选开始安装 > " ans
     case "$ans" in
       "") break ;;
+      q|Q) echo "已退出, 未安装任何东西(不会记录选择, 下次 apply 会再次询问)"; exit 1 ;;
       a) for k in "${KEYS[@]}"; do ON[$k]=1; done ;;
       n) for k in "${KEYS[@]}"; do ON[$k]=0; done ;;
       v) SHOW_DETAIL=$((1 - SHOW_DETAIL)) ;;
