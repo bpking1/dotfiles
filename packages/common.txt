@@ -1,0 +1,117 @@
+# ============================================================
+# 公共包清单 — 两个发行版包名相同的包
+# 格式: 每行一个包, # 之后为注释; `[desktop]` 行之后的内容仅桌面模式安装
+# 分类: `# ==== 名称 ====` 标题行定义一个分类, 安装时可整类勾选/取消(同名分类跨文件合并)
+# 发行版里名字不同/独有的包写在 fedora.txt / arch.txt
+# ============================================================
+
+# ==== 基础 ====
+curl
+git
+git-lfs              # dot_gitconfig 里 lfs filter 为 required
+file
+unzip
+chezmoi
+gcc                   # C 编译器/链接器(mise 装的 rust 需要)
+
+# ==== 终端效率 ====
+tmux
+fish
+neovim
+btop
+eza
+fzf
+ripgrep
+jq
+gitui
+duf
+ncdu
+atuin
+zoxide
+syncthing
+
+# ==== 网络/下载/容器 ====
+aria2
+nmap
+tailscale
+docker-compose        # (Fedora 另有 docker-compose-plugin,见 fedora.txt)
+
+# ==== 开发工具 ====
+clang
+lld
+llvm
+lua
+bat
+tree
+rsync
+zip
+lsof
+whois
+mtr
+tcpdump
+traceroute
+chafa
+bc
+cheat
+
+[desktop]
+# ==== 桌面环境 ====
+hyprland
+hypridle
+hyprlock
+hyprpaper
+hyprlauncher
+hyprpolkitagent
+hyprpwcenter
+hyprshutdown
+hyprsunset
+waybar
+wlogout
+rofi
+kitty
+ly
+papirus-icon-theme
+swaylock
+brightnessctl
+xdg-desktop-portal-hyprland
+network-manager-applet
+
+# ==== 截图录屏 ====
+grim
+grimblast
+slurp
+swappy
+wf-recorder
+cliphist
+
+# ==== 输入法 ====
+fcitx5
+fcitx5-chinese-addons
+fcitx5-configtool
+fcitx5-gtk
+fcitx5-qt
+fcitx5-rime
+
+# ==== 音乐视频 ====
+cava
+go-musicfox
+mpc
+mpd
+mpdris2
+mpv
+yt-dlp
+pamixer
+pavucontrol
+obs-studio
+
+# ==== 桌面应用 ====
+nautilus              # 文件夹管理
+loupe
+papers                # pdf 阅读
+imv                   # 图片查看(Wayland 键盘流,配合 yazi)
+telegram-desktop
+
+# ==== 系统工具 ====
+fastfetch
+flatpak               # Flatpak 应用(Obsidian 等)的运行时
+ntfs-3g               # NTFS 外置盘挂载

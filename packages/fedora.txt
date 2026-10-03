@@ -1,0 +1,47 @@
+# Fedora 专属 — 名字与 Arch 不同或仅 Fedora 有的包; `[desktop]` 之后仅桌面模式安装
+# 分类标题规则同 common.txt(同名分类合并)
+
+# ==== 基础 ====
+glibc-langpack-zh     # 中文 locale
+glibc-langpack-en     # 英文 locale
+rpmfusion-free-release
+rpmfusion-nonfree-release
+dnf-utils
+
+# ==== 终端效率 ====
+fd-find               # (Arch 叫 fd)
+
+# ==== 网络/下载/容器 ====
+docker-ce
+docker-ce-cli
+containerd.io
+docker-buildx-plugin
+docker-compose-plugin
+
+# ==== 开发工具 ====
+gh
+pipx
+gcc-c++
+wget2-wget
+
+# ==== Tauri 开发 ====
+webkit2gtk4.1-devel
+gtk3-devel
+librsvg2-devel
+libayatana-appindicator-gtk3-devel
+openssl-devel
+mingw64-nsis          # 交叉编译 Windows 安装包
+python3-pip
+python3.12
+python3.12-devel
+
+[desktop]
+# ==== 桌面环境 ====
+SwayNotificationCenter  # 通知(Fedora 真名;Arch 叫 swaync,在 arch.txt)
+
+# ==== 桌面应用 ====
+google-chrome-stable  # (Arch 叫 google-chrome)
+
+# ==== 虚拟机 ====
+virt-manager
+qemu-kvm

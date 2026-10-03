@@ -1,0 +1,120 @@
+#!/bin/bash
+# 软件层恢复 — 交互勾选(默认全选) + 安装
+# 清单: packages/common.txt + 发行版文件(fedora/arch.txt), 文件内 `# ==== 名称 ====` 为分类, [desktop] 之后仅桌面模式
+# 另有 packages/apps/*.sh 里的应用(mise/字体/obsidian 等)与分类并列勾选, 由 run_onchange_after_20-install-apps 安装
+# 选择结果写入 ~/.config/chezmoi/selection (+选中 / -取消), 其余脚本读取它; 文件不存在则视为全选
+# 重新选择: chezmoi state delete-bucket --bucket=scriptState && RECONFIGURE=1 chezmoi apply
+# 非交互(无终端)时直接按已有选择/默认全选安装
+set -uo pipefail
+
+OS_ID="{{ .chezmoi.osRelease.id }}"
+PKG_DIR="$HOME/.local/share/chezmoi/packages"
+
+IS_DESKTOP="${DESKTOP:-{{ if .desktop }}1{{ else }}0{{ end }}}"   # 默认取 chezmoi 的 desktop 数据; DESKTOP=0/1 可临时覆盖
+[ "$IS_DESKTOP" = "1" ] && echo "==> 模式: 桌面工作站" || echo "==> 模式: 服务器(跳过桌面项)"
+
+case "$OS_ID" in
+  fedora) DISTRO_FILE="$PKG_DIR/fedora.txt" ;;
+  arch|cachyos|endeavouros|manjaro) DISTRO_FILE="$PKG_DIR/arch.txt" ;;
+  *) echo "未识别的发行版: $OS_ID,跳过软件包层"; exit 0 ;;
+esac
+
+# ---------- 构建勾选项 ----------
+declare -a KEYS NAMES
+declare -A PKGS ON
+
+# 1) 包分类: 解析 "段 分类 包名"; 段 d = [desktop] 之后
+while IFS=$'\t' read -r sec cat pkg; do
+  [ "$sec" = d ] && [ "$IS_DESKTOP" != 1 ] && continue
+  key="pkg:$cat"
+  if [ -z "${PKGS[$key]+x}" ]; then KEYS+=("$key"); NAMES+=("$cat"); PKGS[$key]=""; fi
+  PKGS[$key]+=" $pkg"
+done < <(awk -v OFS='\t' '
+  FNR==1 { sec="s"; cat="" }
+  /^\[desktop\]/ { sec="d"; cat=""; next }
+  /^# =+ .* =+[[:space:]]*$/ { cat=$0; sub(/^# =+ +/,"",cat); sub(/ +=+[[:space:]]*$/,"",cat); next }
+  /^[[:space:]]*(#|$)/ { next }
+  { print sec, (cat=="" ? "其它" : cat), $1 }
+' "$PKG_DIR/common.txt" "$DISTRO_FILE")
+
+# 2) 应用(packages/apps/*.sh): 名称/适用范围取自文件头, 放进目录即出现在菜单
+# shellcheck source=/dev/null
+source "$PKG_DIR/apps/_lib.sh"
+for f in "$PKG_DIR"/apps/*.sh; do
+  id=$(basename "$f" .sh); [ "$id" = _lib ] && continue
+  app_applicable "$f" || continue
+  KEYS+=("app:$id"); NAMES+=("$(app_meta "$f" name)")
+done
+
+# 3) 默认全选; 读取已有选择
+for k in "${KEYS[@]}"; do ON[$k]=1; done
+if [ -f "$SEL_FILE" ]; then
+  while IFS= read -r line; do
+    k="${line#?}"
+    [ -n "${ON[$k]+x}" ] && { [ "${line:0:1}" = "-" ] && ON[$k]=0 || ON[$k]=1; }
+  done < "$SEL_FILE"
+fi
+
+# ---------- 交互菜单 ----------
+if [ -t 0 ] && { [ ! -f "$SEL_FILE" ] || [ "${RECONFIGURE:-0}" = "1" ]; }; then
+  while true; do
+    echo; echo "选择要安装的软件(默认全选; 取消「基础」可能导致后续脚本缺 curl/unzip 等依赖)"
+    for i in "${!KEYS[@]}"; do
+      k="${KEYS[$i]}"; mark="[x]"; [ "${ON[$k]}" = 1 ] || mark="[ ]"
+      extra=""; [ "${k#pkg:}" != "$k" ] && extra=" ($(wc -w <<< "${PKGS[$k]}") 个包)"
+      printf ' %2d) %s %s%s\n' $((i+1)) "$mark" "${NAMES[$i]}" "$extra"
+    done
+    read -rp "编号切换(可多个, 空格分隔) / a 全选 / n 全不选 / 回车确认: " ans
+    case "$ans" in
+      "") break ;;
+      a) for k in "${KEYS[@]}"; do ON[$k]=1; done ;;
+      n) for k in "${KEYS[@]}"; do ON[$k]=0; done ;;
+      *) for t in $ans; do
+           if [[ "$t" =~ ^[0-9]+$ ]] && (( t >= 1 && t <= ${#KEYS[@]} )); then
+             k="${KEYS[$((t-1))]}"; (( ON[$k] = 1 - ON[$k] ))
+           fi
+         done ;;
+    esac
+  done
+fi
+
+# ---------- 保存选择 ----------
+mkdir -p "$(dirname "$SEL_FILE")"
+: > "$SEL_FILE"
+for k in "${KEYS[@]}"; do
+  [ "${ON[$k]}" = 1 ] && echo "+$k" >> "$SEL_FILE" || echo "-$k" >> "$SEL_FILE"
+done
+
+# ---------- 汇总选中的包 ----------
+PKG_LIST=""
+for k in "${KEYS[@]}"; do
+  [ "${k#pkg:}" != "$k" ] && [ "${ON[$k]}" = 1 ] && PKG_LIST+="${PKGS[$k]}"
+done
+has_pkg() { [[ " $PKG_LIST " == *" $1 "* ]]; }
+
+# ---------- 安装 ----------
+case "$OS_ID" in
+  fedora)
+    echo "==> [Fedora] 仓库准备"
+    has_pkg rpmfusion-free-release && { rpm -q rpmfusion-free-release &>/dev/null || sudo dnf install -y \
+      "https://download1.rpmfusion.org/free/fedora/rpmfusion-free-release-$(rpm -E %fedora).noarch.rpm"; }
+    has_pkg rpmfusion-nonfree-release && { rpm -q rpmfusion-nonfree-release &>/dev/null || sudo dnf install -y \
+      "https://download1.rpmfusion.org/nonfree/fedora/rpmfusion-nonfree-release-$(rpm -E %fedora).noarch.rpm"; }
+    has_pkg docker-ce && { rpm -q docker-ce &>/dev/null || sudo dnf config-manager addrepo --from-repofile=https://download.docker.com/linux/fedora/docker-ce.repo >/dev/null; }
+    has_pkg google-chrome-stable && { rpm -q google-chrome-stable &>/dev/null || sudo dnf install -y google-chrome-stable; }
+    echo "==> [Fedora] 安装选中的包"
+    # shellcheck disable=SC2086
+    [ -n "$PKG_LIST" ] && { sudo dnf install -y --skip-unavailable $PKG_LIST || true; }
+    ;;
+  *)
+    if has_pkg yay; then
+      echo "==> [Arch 系] yay 引导(如缺失)"
+      command -v yay >/dev/null || { git clone --depth 1 https://aur.archlinux.org/yay.git /tmp/yay-build && (cd /tmp/yay-build && makepkg -si --noconfirm) && rm -rf /tmp/yay-build; }
+    fi
+    echo "==> [Arch 系] 安装选中的包"
+    # shellcheck disable=SC2086
+    [ -n "$PKG_LIST" ] && yay -S --needed --noconfirm $PKG_LIST
+    ;;
+esac
+
+echo "✅ 软件层恢复完成(模式: desktop=$IS_DESKTOP; 选择已记录于 $SEL_FILE)"
