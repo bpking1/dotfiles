@@ -70,7 +70,7 @@ brightnessctl
 xdg-desktop-portal-hyprland
 network-manager-applet
 
-# ==== 截图录屏 ====
+# -- 截图录屏 --
 grim
 grimblast
 slurp
@@ -78,7 +78,7 @@ swappy
 wf-recorder
 cliphist
 
-# ==== 输入法 ====
+# -- 输入法 --
 fcitx5
 fcitx5-chinese-addons
 fcitx5-configtool
@@ -86,7 +86,7 @@ fcitx5-gtk
 fcitx5-qt
 fcitx5-rime
 
-# ==== 音乐视频 ====
+# -- 音乐视频 --
 cava
 go-musicfox
 mpc
