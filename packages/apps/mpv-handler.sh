@@ -14,7 +14,10 @@ app_install() {
   [ -n "$bin" ] || { echo "解包后未找到二进制"; return 1; }
   sudo install -m755 "$bin" /usr/local/bin/mpv-handler
   if [ -f "$HOME/.local/share/applications/mpv-handler.desktop" ]; then
-    xdg-mime default mpv-handler.desktop x-scheme-handler/mpv && echo "mpv:// 协议已注册"
+    # v0.4.0 起协议由 mpv:// 改名为 mpv-handler://
+    xdg-mime default mpv-handler.desktop x-scheme-handler/mpv-handler
+    xdg-mime default mpv-handler-debug.desktop x-scheme-handler/mpv-handler-debug
+    update-desktop-database "$HOME/.local/share/applications/" && echo "mpv-handler:// 协议已注册"
   else
     echo "!! desktop 文件缺失(chezmoi 应已部署),协议未注册"
   fi

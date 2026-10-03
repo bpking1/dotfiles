@@ -4,4 +4,4 @@ Name=mpv-handler
 Exec=mpv-handler %u
 Terminal=false
 NoDisplay=true
-MimeType=x-scheme-handler/mpv;
+MimeType=x-scheme-handler/mpv-handler;

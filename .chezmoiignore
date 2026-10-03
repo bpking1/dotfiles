@@ -13,6 +13,7 @@
 .config/go-musicfox
 .local/share/fcitx5
 .local/share/applications/mpv-handler.desktop
+.local/share/applications/mpv-handler-debug.desktop
 图片
 {{ end }}
 packages

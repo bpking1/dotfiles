@@ -1,0 +1,7 @@
+[Desktop Entry]
+Type=Application
+Name=mpv-handler-debug
+Exec=mpv-handler %u
+Terminal=true
+NoDisplay=true
+MimeType=x-scheme-handler/mpv-handler-debug;
