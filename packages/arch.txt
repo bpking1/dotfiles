@@ -11,18 +11,6 @@ fd
 docker
 docker-compose
 
-# ==== 开发工具 ====
-github-cli            # (Fedora 叫 gh)
-python-pipx           # (Fedora 叫 pipx)
-
-# ==== Tauri 开发 ====  (Arch 包名按 Tauri 官方文档, 未实测)
-webkit2gtk-4.1
-base-devel
-openssl
-libappindicator-gtk3
-librsvg
-nsis
-
 [desktop]
 # ==== 桌面环境 ====
 swaync

@@ -34,12 +34,8 @@ syncthing
 aria2
 nmap
 tailscale
-docker-compose        # (Fedora 另有 docker-compose-plugin,见 fedora.txt)
 
 # ==== 开发工具 ====
-clang
-lld
-llvm
 lua
 bat
 tree
@@ -50,9 +46,7 @@ whois
 mtr
 tcpdump
 traceroute
-chafa
 bc
-cheat
 
 [desktop]
 # ==== 桌面环境 ====
@@ -113,5 +107,4 @@ telegram-desktop
 
 # ==== 系统工具 ====
 fastfetch
-flatpak               # Flatpak 应用(Obsidian 等)的运行时
 ntfs-3g               # NTFS 外置盘挂载

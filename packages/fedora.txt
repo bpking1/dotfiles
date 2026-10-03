@@ -19,21 +19,7 @@ docker-buildx-plugin
 docker-compose-plugin
 
 # ==== 开发工具 ====
-gh
-pipx
-gcc-c++
 wget2-wget
-
-# ==== Tauri 开发 ====
-webkit2gtk4.1-devel
-gtk3-devel
-librsvg2-devel
-libayatana-appindicator-gtk3-devel
-openssl-devel
-mingw64-nsis          # 交叉编译 Windows 安装包
-python3-pip
-python3.12
-python3.12-devel
 
 [desktop]
 # ==== 桌面环境 ====

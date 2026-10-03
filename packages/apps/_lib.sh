@@ -43,7 +43,7 @@ gh_tag() {   # GitHub 最新 release 的 tag
 }
 
 flatpak_app() {   # $1 = Flathub 应用 ID
-  command -v flatpak >/dev/null || { echo "未安装 flatpak(应在 common.txt 桌面段)"; return 1; }
+  command -v flatpak >/dev/null || { echo "未安装 flatpak(请先自行安装)"; return 1; }
   flatpak remote-add --if-not-exists --user flathub https://dl.flathub.org/repo/flathub.flatpakrepo
   flatpak info "$1" &>/dev/null || flatpak install --user -y flathub "$1"
 }
