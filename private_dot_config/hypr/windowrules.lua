@@ -64,7 +64,6 @@ hl.window_rule({ name = "kitty-anim", match = { class = "^kitty$" }, animation =
 hl.window_rule({ name = "ws-tg",    match = { title = "^(TDesktop|Telegram|64Gram)$" }, workspace = "name:TG" })
 hl.window_rule({ name = "ws-music", match = { class = "^musicfox$" },                   workspace = "name:Music" })
 hl.window_rule({ name = "ws-note",  match = { class = "^notes$" },                      workspace = "name:Note" })
-hl.window_rule({ name = "ws-ob",    match = { title = "^Obsidian$" },                   workspace = "name:OB" })
 
 -- firefox 不做模糊
 hl.window_rule({ name = "firefox-noblur", match = { class = "^firefox$" }, no_blur = true })

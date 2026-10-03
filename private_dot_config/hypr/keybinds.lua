@@ -77,10 +77,6 @@ hl.bind(mainMod .. " + M", function()   -- musicfox 网易云音乐 TUI
     hl.dispatch(hl.dsp.exec_cmd("pgrep -x musicfox >/dev/null || exec kitty --class musicfox -e musicfox"))
 end)
 hl.bind(mainMod .. " + N", hl.dsp.focus({ workspace = "name:Note" }))
-hl.bind(mainMod .. " + O", function()   -- Obsidian 工作区 + waybar 开关
-    hl.dispatch(hl.dsp.focus({ workspace = "name:OB" }))
-    hl.dispatch(hl.dsp.exec_cmd("killall -SIGUSR1 waybar || true"))
-end)
 hl.bind(mainMod .. " + D", function()   -- Simple Live 直播播放器(已运行则只跳工作区,避免重复开)
     hl.dispatch(hl.dsp.focus({ workspace = "name:Live" }))
     hl.dispatch(hl.dsp.exec_cmd("pgrep -x simple_live_app >/dev/null || exec $HOME/.local/opt/simple-live/simple_live_app"))
@@ -111,7 +107,6 @@ hl.bind(mainMod .. " + mouse_up",   hl.dsp.focus({ workspace = "e-1" }))
 ---- 快速启动 ----
 ------------------------------------
 hl.bind(mainMod .. " + B", hl.dsp.exec_cmd("google-chrome-stable --enable-wayland-ime"))   -- Chrome(原生版 + Wayland 原生输入法)
-hl.bind(mainMod .. " + SHIFT + O", hl.dsp.exec_cmd("flatpak run md.obsidian.Obsidian --enable-wayland-ime"))  -- Obsidian(未装 Flatpak 时可改回本地命令)
 hl.bind(mainMod .. " + SHIFT + N", hl.dsp.exec_cmd('kitty --class="notes" --hold sh -c "cd ~/obsidian-vault && nvim"'))
 hl.bind(mainMod .. " + SHIFT + M", hl.dsp.exec_cmd('kitty --class="musicfox" --hold sh -c "pkill mpd; musicfox"'))
 hl.bind(mainMod .. " + Z", hl.dsp.exec_cmd("zotero"))
