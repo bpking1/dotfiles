@@ -18,3 +18,5 @@
 {{ end }}
 packages
 WORKFLOW.md
+# 外部 git clone 的 mpv 脚本(用 git pull 更新),不纳管
+.config/mpv/scripts/file-browser
