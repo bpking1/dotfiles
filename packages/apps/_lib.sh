@@ -7,7 +7,7 @@
 #   函数:
 #     app_install    (必填) 安装; 失败返回非 0
 #     app_installed  (可选) 已安装则返回 0, 驱动会跳过; 省略则每次都执行 app_install(需自身幂等)
-#   可用辅助: is_arch / gh_tag / $BIN / $OPT
+#   可用辅助: is_arch / gh_tag / desktop_entry / $BIN / $OPT
 
 OPT="$HOME/.local/opt"; BIN="$HOME/.local/bin"
 SEL_FILE="$HOME/.config/chezmoi/selection"
@@ -40,4 +40,18 @@ gh_tag() {   # GitHub 最新 release 的 tag
   local t; t=$(curl -fsSL "https://api.github.com/repos/$1/releases/latest" | jq -r .tag_name)
   [ -n "$t" ] && [ "$t" != null ] || { echo "版本获取失败(GitHub API 限流?)" >&2; return 1; }
   echo "$t"
+}
+
+# 写应用菜单项: desktop_entry id 显示名 Exec [图标URL] [Categories]
+# 图标下载到 ~/.local/share/icons/<id>.<扩展名>; 无 URL 则不写 Icon
+desktop_entry() {
+  local id="$1" name="$2" exec="$3" icon_url="${4:-}" cats="${5:-Utility;}" icon="" d="$HOME/.local/share/applications"
+  mkdir -p "$d" "$HOME/.local/share/icons"
+  if [ -n "$icon_url" ]; then
+    icon="$HOME/.local/share/icons/$id.${icon_url##*.}"
+    curl -fsSL "$icon_url" -o "$icon" || icon=""
+  fi
+  { echo "[Desktop Entry]"; echo "Type=Application"; echo "Name=$name"; echo "Exec=$exec"
+    [ -n "$icon" ] && echo "Icon=$icon"; echo "Categories=$cats"; echo "Terminal=false"; } > "$d/$id.desktop"
+  update-desktop-database "$d" 2>/dev/null || true
 }
