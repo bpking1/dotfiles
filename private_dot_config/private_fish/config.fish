@@ -6,6 +6,10 @@ if status is-interactive
 end
 # for nvidia driver tarui bug,setted in hyprland conf
 # set -x WEBKIT_DISABLE_DMABUF_RENDERER 1
+# mise 必须先于 starship 激活(starship/yazi 由 mise 提供)
+if test -x ~/.local/bin/mise
+    ~/.local/bin/mise activate fish | source
+end
 if type -q starship
     starship init fish | source
 end
@@ -17,9 +21,6 @@ end
 set --export BUN_INSTALL "$HOME/.bun"
 set --export PATH $BUN_INSTALL/bin $PATH
 export PATH="$HOME/.local/bin:$PATH"
-if test -x ~/.local/bin/mise
-    ~/.local/bin/mise activate fish | source
-end
 
 
 # Added by Antigravity CLI installer
