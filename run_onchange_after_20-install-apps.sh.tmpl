@@ -1,0 +1,29 @@
+#!/bin/bash
+# 应用安装驱动 — 遍历 packages/apps/*.sh, 按勾选(~/.config/chezmoi/selection)逐个安装
+# 新增软件: 在 packages/apps/ 放一个 <id>.sh 即可(规范见 packages/apps/_lib.sh), 无需改本脚本
+# 触发: apps 目录或 mise 配置内容变化时重跑 → 下面两行哈希随之变化; 各应用自带 app_installed 保证幂等
+# apps sha256:   {{ output "sh" "-c" (printf "cat '%s'/packages/apps/*.sh | sha256sum" .chezmoi.sourceDir) | trim }}
+# mise config:   {{ include "private_dot_config/mise/config.toml" | sha256sum }}
+set -uo pipefail
+
+OS_ID="{{ .chezmoi.osRelease.id }}"
+IS_DESKTOP="${DESKTOP:-{{ if .desktop }}1{{ else }}0{{ end }}}"   # 默认取 chezmoi 的 desktop 数据; DESKTOP=0/1 可临时覆盖
+APPS_DIR="$HOME/.local/share/chezmoi/packages/apps"
+# shellcheck source=/dev/null
+source "$APPS_DIR/_lib.sh"
+mkdir -p "$OPT" "$BIN"
+
+for f in "$APPS_DIR"/*.sh; do
+  id=$(basename "$f" .sh)
+  [ "$id" = _lib ] && continue
+  app_applicable "$f" || continue
+  name=$(app_meta "$f" name)
+  selected "app:$id" || { echo "==> $name: 已取消,跳过"; continue; }
+  echo "==> $name"
+  (
+    set -e
+    # shellcheck source=/dev/null
+    source "$f"
+    if declare -F app_installed >/dev/null && app_installed; then echo "已安装"; else app_install; fi
+  ) || echo "!! $name 安装失败(继续下一项)"
+done

@@ -1,0 +1,7 @@
+[tools]
+dotnet = "latest"
+starship = "latest"
+yazi = "latest"
+bun = "latest"
+rust = "latest"
+go = "latest"
