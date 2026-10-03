@@ -110,7 +110,7 @@ hl.bind(mainMod .. " + mouse_up",   hl.dsp.focus({ workspace = "e-1" }))
 ------------------------------------
 ---- 快速启动 ----
 ------------------------------------
-hl.bind(mainMod .. " + B", hl.dsp.exec_cmd("flatpak run com.google.Chrome --enable-wayland-ime"))   -- Chrome(Flatpak + Wayland 原生输入法)
+hl.bind(mainMod .. " + B", hl.dsp.exec_cmd("google-chrome-stable --enable-wayland-ime"))   -- Chrome(原生版 + Wayland 原生输入法)
 hl.bind(mainMod .. " + SHIFT + O", hl.dsp.exec_cmd("flatpak run md.obsidian.Obsidian --enable-wayland-ime"))  -- Obsidian(未装 Flatpak 时可改回本地命令)
 hl.bind(mainMod .. " + SHIFT + N", hl.dsp.exec_cmd('kitty --class="notes" --hold sh -c "cd ~/obsidian-vault && nvim"'))
 hl.bind(mainMod .. " + SHIFT + M", hl.dsp.exec_cmd('kitty --class="musicfox" --hold sh -c "pkill mpd; musicfox"'))

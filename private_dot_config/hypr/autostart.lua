@@ -30,8 +30,8 @@ hl.on("hyprland.start", function()
     hl.exec_cmd("wl-paste --type text --watch cliphist store")
     hl.exec_cmd("wl-paste --type image --watch cliphist store")
 
-    -- pot 翻译/OCR(需自行安装: flatpak install com.pot_app.pot)
-    hl.exec_cmd("env GDK_BACKEND=x11 WEBKIT_DISABLE_DMABUF_RENDERER=1 flatpak run com.pot_app.pot")
+    -- pot 翻译/OCR(原生安装: Fedora 见 packages/apps/pot.sh, Arch 为 pot-translation)
+    hl.exec_cmd("env GDK_BACKEND=x11 WEBKIT_DISABLE_DMABUF_RENDERER=1 pot")
 
     -- 空闲管理(自动锁屏/息屏, 见 hypridle.conf)
     hl.exec_cmd("hypridle")
@@ -40,5 +40,5 @@ hl.on("hyprland.start", function()
     hl.exec_cmd("sleep 2 && hyprpm reload -n")
 
     -- 延迟应用 HDR/FreeSync(启动期应用会在 F44/Mesa26 下崩溃,等合成器就绪再切)
-    hl.exec_cmd("sleep 6 && hyprctl eval 'hl.monitor({ output = \"DP-1\", cm = \"hdr\", vrr = 1, sdr_max_luminance = 200, sdrbrightness = 1.5 })'")
+    hl.exec_cmd("sleep 6 && hyprctl eval 'hl.monitor({ output = \"DP-1\", bitdepth = 10, cm = \"hdr\", vrr = 1, sdr_max_luminance = 200, sdrbrightness = 1.5 })'")
 end)
