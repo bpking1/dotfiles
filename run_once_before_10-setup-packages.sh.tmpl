@@ -55,20 +55,49 @@ if [ -f "$SEL_FILE" ]; then
   done < "$SEL_FILE"
 fi
 
+# ---------- 已装状态(用于菜单展示与跳过) ----------
+declare -A HAVE APP_STATE
+case "$OS_ID" in
+  fedora) while read -r n; do HAVE[$n]=1; done < <(rpm -qa --qf '%{NAME}\n' 2>/dev/null) ;;
+  *)      while read -r n; do HAVE[$n]=1; done < <(pacman -Qq 2>/dev/null) ;;
+esac
+for k in "${KEYS[@]}"; do
+  [ "${k#app:}" = "$k" ] && continue
+  f="$PKG_DIR/apps/${k#app:}.sh"
+  APP_STATE[$k]=$( ( source "$f" 2>/dev/null; if declare -F app_installed >/dev/null; then app_installed &>/dev/null && echo 已安装 || echo 未安装; else echo "每次检查"; fi ) )
+done
+
+# 折行缩进输出: indent_wrap 前缀 文本
+indent_wrap() { printf '%s\n' "$2" | fold -s -w 88 | sed "s/^/$1/"; }
+
 # ---------- 交互菜单 ----------
 if [ -t 0 ] && { [ ! -f "$SEL_FILE" ] || [ "${RECONFIGURE:-0}" = "1" ]; }; then
+  SHOW_DETAIL=1
   while true; do
     echo; echo "选择要安装的软件(默认全选; 取消「基础」可能导致后续脚本缺 curl/unzip 等依赖)"
+    echo "已装的包/应用安装时会自动跳过, 不会重装"
     for i in "${!KEYS[@]}"; do
       k="${KEYS[$i]}"; mark="[x]"; [ "${ON[$k]}" = 1 ] || mark="[ ]"
-      extra=""; [ "${k#pkg:}" != "$k" ] && extra=" ($(wc -w <<< "${PKGS[$k]}") 个包)"
-      printf ' %2d) %s %s%s\n' $((i+1)) "$mark" "${NAMES[$i]}" "$extra"
+      if [ "${k#pkg:}" != "$k" ]; then
+        miss=""; have=""; nm=0; nh=0
+        for p in ${PKGS[$k]}; do
+          if [ -n "${HAVE[$p]+x}" ]; then have+="$p "; nh=$((nh+1)); else miss+="$p "; nm=$((nm+1)); fi
+        done
+        printf ' %2d) %s %s  (%d 个包: 未装 %d / 已装 %d)\n' $((i+1)) "$mark" "${NAMES[$i]}" $((nm+nh)) $nm $nh
+        if [ "$SHOW_DETAIL" = 1 ]; then
+          [ -n "$miss" ] && indent_wrap "        未装: " "$miss"
+          [ -n "$have" ] && indent_wrap "        已装: " "$have"
+        fi
+      else
+        printf ' %2d) %s %s  [%s]\n' $((i+1)) "$mark" "${NAMES[$i]}" "${APP_STATE[$k]}"
+      fi
     done
-    read -rp "编号切换(可多个, 空格分隔) / a 全选 / n 全不选 / 回车确认: " ans
+    read -rp "编号切换(可多个, 空格分隔) / a 全选 / n 全不选 / v 显示或隐藏包明细 / 回车确认: " ans
     case "$ans" in
       "") break ;;
       a) for k in "${KEYS[@]}"; do ON[$k]=1; done ;;
       n) for k in "${KEYS[@]}"; do ON[$k]=0; done ;;
+      v) SHOW_DETAIL=$((1 - SHOW_DETAIL)) ;;
       *) for t in $ans; do
            if [[ "$t" =~ ^[0-9]+$ ]] && (( t >= 1 && t <= ${#KEYS[@]} )); then
              k="${KEYS[$((t-1))]}"; (( ON[$k] = 1 - ON[$k] ))
@@ -91,6 +120,9 @@ for k in "${KEYS[@]}"; do
   [ "${k#pkg:}" != "$k" ] && [ "${ON[$k]}" = 1 ] && PKG_LIST+="${PKGS[$k]}"
 done
 has_pkg() { [[ " $PKG_LIST " == *" $1 "* ]]; }
+PKG_TODO=""   # 选中且尚未安装的包(已装的直接跳过)
+for p in $PKG_LIST; do [ -n "${HAVE[$p]+x}" ] || PKG_TODO+=" $p"; done
+echo "==> 选中 $(wc -w <<< "$PKG_LIST") 个包, 其中 $(wc -w <<< "$PKG_TODO") 个待安装"
 
 # ---------- 安装 ----------
 case "$OS_ID" in
@@ -104,7 +136,7 @@ case "$OS_ID" in
     has_pkg google-chrome-stable && { rpm -q google-chrome-stable &>/dev/null || sudo dnf install -y google-chrome-stable; }
     echo "==> [Fedora] 安装选中的包"
     # shellcheck disable=SC2086
-    [ -n "$PKG_LIST" ] && { sudo dnf install -y --skip-unavailable $PKG_LIST || true; }
+    [ -n "$PKG_TODO" ] && { sudo dnf install -y --skip-unavailable $PKG_TODO || true; }
     ;;
   *)
     if has_pkg yay; then
@@ -113,7 +145,7 @@ case "$OS_ID" in
     fi
     echo "==> [Arch 系] 安装选中的包"
     # shellcheck disable=SC2086
-    [ -n "$PKG_LIST" ] && yay -S --needed --noconfirm $PKG_LIST
+    [ -n "$PKG_TODO" ] && yay -S --needed --noconfirm $PKG_TODO
     ;;
 esac
 
