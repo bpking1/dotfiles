@@ -21,6 +21,7 @@
         "disk",
         "temperature",
         "battery",
+        "custom/brightness",
         "pulseaudio","pulseaudio#microphone",
         "tray","custom/recorder",
         "clock"
@@ -95,6 +96,19 @@
         "format": "",
         "on-click": "hyprlock",
         "tooltip": false
+    },
+
+    "custom/brightness": {
+        "exec": "$HOME/.config/waybar/scripts/brightness waybar",
+        "return-type": "json",
+        "interval": 5,
+        "signal": 8,
+        "on-scroll-up": "$HOME/.config/waybar/scripts/brightness up",
+        "on-scroll-down": "$HOME/.config/waybar/scripts/brightness down",
+        "on-click": "$HOME/.config/waybar/scripts/brightness up 1",
+        "on-click-right": "$HOME/.config/waybar/scripts/brightness down 1",
+        "smooth-scrolling-threshold": 3,
+        "tooltip": true
     },
 
     // https://github.com/Alexays/Waybar/wiki/Module:-Workspaces

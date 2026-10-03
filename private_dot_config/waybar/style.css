@@ -67,7 +67,8 @@ tooltip label {
 #custom-submap,
 #tray,
 #temperature,
-#backlight {
+#backlight,
+#custom-brightness {
     padding: 5px;
     margin: 3px 0px 3px 0px;
     border: 0px;
@@ -86,7 +87,8 @@ tooltip label {
 #custom-submap,
 #tray,
 #temperature,
-#backlight {
+#backlight,
+#custom-brightness {
     background: #1d1f21;
     color: #c5c8c6;
 }
@@ -135,6 +137,18 @@ tooltip label {
     border-left: 0px;
     border-right: 0px;
 }
+
+/* 亮度(内置屏 brightnessctl / 外接屏 DDC) */
+#custom-brightness {
+    color: #e5c890;
+    border-left: 0px;
+    border-right: 0px;
+}
+
+#custom-brightness.unavailable {
+    color: #6b7089;
+}
+
 /* 录屏指示:红色 REC */
 #custom-recorder {
     color: #f38ba8;
