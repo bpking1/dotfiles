@@ -1,4 +1,12 @@
+{{- /* 本机角色: 桌面工作站 or 服务器。init 时按图形会话探测出默认值并询问一次, 之后记住;
+       非交互用 chezmoi init --promptBool desktop=true|false */ -}}
+{{- $detected := ne (or (env "WAYLAND_DISPLAY") (env "DISPLAY")) "" -}}
+{{- $desktop := promptBoolOnce . "desktop" "desktop (本机是桌面工作站吗, 否则按服务器处理)" $detected -}}
+
 encryption = "gpg"
+
+[data]
+  desktop = {{ $desktop }}
 
 [merge]
   command = "nvim"

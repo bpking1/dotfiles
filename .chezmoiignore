@@ -1,7 +1,19 @@
-{{ if eq .chezmoi.hostname "fn" }}
-{{/* headless 服务器(fn):忽略桌面相关配置 */}}
+{{ if not .desktop }}
+{{/* 服务器(desktop=false): 忽略桌面配置 */}}
 .config/hypr
 .config/waybar
 .config/fontconfig
+.config/fcitx5
+.config/kitty
+.config/mpv
+.config/mpd
+.config/cava
+.config/rofi
+.config/Cemu
+.config/go-musicfox
+.local/share/fcitx5
+.local/share/applications/mpv-handler.desktop
 图片
 {{ end }}
+packages
+WORKFLOW.md
