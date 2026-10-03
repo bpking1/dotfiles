@@ -14,14 +14,14 @@ app_install() {
   local tag tmp; tmp=$(mktemp -d); trap 'rm -rf "$tmp"' RETURN
   tag="${NF_PIN:-$(gh_tag ryanoasis/nerd-fonts)}"
   echo "FiraCode Nerd Font ($tag)"
-  curl -fsSL "https://github.com/ryanoasis/nerd-fonts/releases/download/${tag}/FiraCode.zip" -o "$tmp/fira.zip"
+  curl -fSL --progress-bar "https://github.com/ryanoasis/nerd-fonts/releases/download/${tag}/FiraCode.zip" -o "$tmp/fira.zip"
   mkdir -p "$FONT_DIR/FiraCode"
   unzip -qoj "$tmp/fira.zip" FiraCodeNerdFontMono-Regular.ttf FiraCodeNerdFontMono-Bold.ttf -d "$FONT_DIR/FiraCode"
   tag="${LXGW_PIN:-$(gh_tag lxgw/LxgwWenKai)}"
   echo "霞鹜文楷 Regular/Medium ($tag)"
   mkdir -p "$FONT_DIR/lxgw"
   for w in Regular Medium; do
-    curl -fsSL "https://github.com/lxgw/LxgwWenKai/releases/download/${tag}/LXGWWenKai-${w}.ttf" -o "$FONT_DIR/lxgw/LXGWWenKai-${w}.ttf"
+    curl -fSL --progress-bar "https://github.com/lxgw/LxgwWenKai/releases/download/${tag}/LXGWWenKai-${w}.ttf" -o "$FONT_DIR/lxgw/LXGWWenKai-${w}.ttf"
   done
   fc-cache -f "$FONT_DIR"
 }

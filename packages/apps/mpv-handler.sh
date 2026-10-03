@@ -8,7 +8,7 @@ app_installed() { [ -z "$PIN" ] && command -v mpv-handler >/dev/null; }
 app_install() {
   local tag tmp bin; tag="${PIN:-$(gh_tag akiirui/mpv-handler)}"
   tmp=$(mktemp -d); trap 'rm -rf "$tmp"' RETURN
-  curl -fsSL "https://github.com/akiirui/mpv-handler/releases/download/${tag}/mpv-handler-linux-amd64.zip" -o "$tmp/h.zip"
+  curl -fSL --progress-bar "https://github.com/akiirui/mpv-handler/releases/download/${tag}/mpv-handler-linux-amd64.zip" -o "$tmp/h.zip"
   unzip -qo "$tmp/h.zip" -d "$tmp"
   bin=$(find "$tmp" -type f -name mpv-handler | head -1)
   [ -n "$bin" ] || { echo "解包后未找到二进制"; return 1; }

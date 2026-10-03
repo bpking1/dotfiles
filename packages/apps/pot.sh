@@ -10,6 +10,6 @@ app_install() {
   local ver tmp; ver="${PIN:-$(gh_tag pot-app/pot-desktop)}"
   [ "$(uname -m)" = x86_64 ] || { echo "未适配架构: $(uname -m)"; return 1; }
   tmp=$(mktemp -d); trap 'rm -rf "$tmp"' RETURN
-  curl -fsSL "https://github.com/pot-app/pot-desktop/releases/download/${ver}/pot-${ver}-1.x86_64.rpm" -o "$tmp/pot.rpm"
+  curl -fSL --progress-bar "https://github.com/pot-app/pot-desktop/releases/download/${ver}/pot-${ver}-1.x86_64.rpm" -o "$tmp/pot.rpm"
   sudo dnf install -y "$tmp/pot.rpm"
 }

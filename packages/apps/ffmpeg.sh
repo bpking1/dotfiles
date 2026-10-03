@@ -16,7 +16,7 @@ app_install() {
   [ -n "$asset" ] && [ "$asset" != null ] || { echo "未找到 ffmpeg 构建资源(GitHub API 限流?)"; return 1; }
   tmp=$(mktemp -d); trap 'rm -rf "$tmp"' RETURN
   echo "下载 $asset"
-  curl -fsSL "https://github.com/BtbN/FFmpeg-Builds/releases/download/latest/$asset" | tar -xJ -C "$tmp"
+  curl -fSL --progress-bar "https://github.com/BtbN/FFmpeg-Builds/releases/download/latest/$asset" | tar -xJ -C "$tmp"
   dir=$(basename "$(echo "$tmp"/ffmpeg-*)")
   mkdir -p "$FF_DIR"; rm -rf "$FF_DIR/$dir"; mv "$tmp/$dir" "$FF_DIR/$dir"
   ln -sfn "$FF_DIR/$dir/bin/ffmpeg" "$BIN/ffmpeg"

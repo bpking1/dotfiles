@@ -8,7 +8,7 @@ app_install() {
   [ "$(uname -m)" = x86_64 ] || { echo "未适配架构: $(uname -m)"; return 1; }
   local tag tmp; tag=$(gh_tag kaii-lb/overskride); tmp=$(mktemp -d); trap 'rm -rf "$tmp"' RETURN
   sudo dnf install -y gtk4 libadwaita bluez
-  curl -fsSL "https://github.com/kaii-lb/overskride/releases/download/${tag}/overskride.tar.xz" | tar -xJ -C "$tmp"
+  curl -fSL --progress-bar "https://github.com/kaii-lb/overskride/releases/download/${tag}/overskride.tar.xz" | tar -xJ -C "$tmp"
   sudo install -Dm755 "$tmp/package/usr/bin/overskride" /usr/local/bin/overskride
   sudo cp -r "$tmp/package/usr/share/." /usr/share/
   sudo glib-compile-schemas /usr/share/glib-2.0/schemas
