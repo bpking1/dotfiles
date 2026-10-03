@@ -14,7 +14,7 @@ hl.config({
         --     bar_part_of_window    = true,
         --     bar_precedence_over_border = false,
         --     bar_text_size         = 11,
-        --     bar_text_font         = "LXGW WenKai GB Screen",
+        --     bar_text_font         = "LXGW WenKai",
         --     bar_text_align        = "center",
         --     bar_button_padding    = 5,
         --     bar_padding           = 7,
