@@ -7,7 +7,7 @@
 #   函数:
 #     app_install    (必填) 安装; 失败返回非 0
 #     app_installed  (可选) 已安装则返回 0, 驱动会跳过; 省略则每次都执行 app_install(需自身幂等)
-#   可用辅助: is_arch / gh_tag / flatpak_app / $BIN / $OPT
+#   可用辅助: is_arch / gh_tag / $BIN / $OPT
 
 OPT="$HOME/.local/opt"; BIN="$HOME/.local/bin"
 SEL_FILE="$HOME/.config/chezmoi/selection"
@@ -40,10 +40,4 @@ gh_tag() {   # GitHub 最新 release 的 tag
   local t; t=$(curl -fsSL "https://api.github.com/repos/$1/releases/latest" | jq -r .tag_name)
   [ -n "$t" ] && [ "$t" != null ] || { echo "版本获取失败(GitHub API 限流?)" >&2; return 1; }
   echo "$t"
-}
-
-flatpak_app() {   # $1 = Flathub 应用 ID
-  command -v flatpak >/dev/null || { echo "未安装 flatpak(请先自行安装)"; return 1; }
-  flatpak remote-add --if-not-exists --user flathub https://dl.flathub.org/repo/flathub.flatpakrepo
-  flatpak info "$1" &>/dev/null || flatpak install --user -y flathub "$1"
 }
