@@ -18,5 +18,8 @@
 {{ end }}
 packages
 WORKFLOW.md
-# 外部 git clone 的 mpv 脚本(用 git pull 更新),不纳管
+# mpv 脚本/字体本体不入库(上游 release 含跨平台二进制): file-browser 为 git clone, uosc 走 packages/apps 安装
 .config/mpv/scripts/file-browser
+.config/mpv/scripts/uosc
+.config/mpv/fonts/uosc_icons.otf
+.config/mpv/fonts/uosc_textures.ttf
