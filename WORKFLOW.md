@@ -10,7 +10,7 @@
 
 ## 本机角色(桌面 / 服务器)
 - 由 chezmoi 数据 `.desktop` 决定(`.chezmoi.toml.tmpl`), **不看主机名**; `chezmoi init` 时按图形会话探测默认值并询问一次, 之后记住
-- 桌面: 装清单全部(含 `[desktop]` 段), 铺 hypr/waybar/fontconfig/壁纸, 跑字体/pot/mpv-handler 脚本
+- 桌面: 装清单全部(含 `[desktop]` 段), 铺 hypr/waybar/fontconfig/壁纸, 跑字体/mpv-handler 脚本
 - 服务器: 只装各清单 `[desktop]` 之前的部分, 以上桌面内容全部跳过(`.chezmoiignore` 统一控制)
 - 切换角色: `chezmoi init --prompt --promptBool 'desktop (本机是桌面工作站吗, 否则按服务器处理)=true'`(false 反之), 再 `chezmoi apply`
 - 包清单脚本可用 `DESKTOP=0/1` 环境变量临时覆盖, 不改变 chezmoi 数据
@@ -33,7 +33,7 @@
 - **swayosd** 三件套(`/usr/local/bin`,音量/亮度 OSD,keybinds 5 处引用)
   - 上游: https://github.com/ErikReider/SwayOSD(无 release 二进制,需 cargo+meson 编译)
   - 现有版本装于 2026-10-02,配置无额外文件,重装系统后按上游 README 编译即可
-- 其余(mise / 字体 / ffmpeg / Claude Code / Codex / agy / opencode / pot / Rime / Obsidian / Sunshine 等)均为 `packages/apps/<id>.sh`, 由 chezmoi 在 apply 时按勾选安装; mise 管理的工具见 `private_dot_config/mise/config.toml`
+- 其余(mise / 字体 / ffmpeg / Claude Code / Codex / agy / opencode / Rime / Obsidian / Sunshine 等)均为 `packages/apps/<id>.sh`, 由 chezmoi 在 apply 时按勾选安装; mise 管理的工具见 `private_dot_config/mise/config.toml`
 
 ## 待实施
 - waybar 歌词模块(已定方案:mpdris2/MPRIS 拿曲名 → API 拉 LRC → custom module;脚本未写)

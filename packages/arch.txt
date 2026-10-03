@@ -17,7 +17,6 @@ swaync
 
 # ==== 桌面应用 ====
 google-chrome
-pot-translation       # 划词翻译(AUR 源;Fedora 侧走 packages/apps/pot.sh)
 
 # ==== 虚拟机 ====
 virt-manager

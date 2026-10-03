@@ -30,9 +30,6 @@ hl.on("hyprland.start", function()
     hl.exec_cmd("wl-paste --type text --watch cliphist store")
     hl.exec_cmd("wl-paste --type image --watch cliphist store")
 
-    -- pot 翻译/OCR(原生安装: Fedora 见 packages/apps/pot.sh, Arch 为 pot-translation)
-    hl.exec_cmd("env GDK_BACKEND=x11 WEBKIT_DISABLE_DMABUF_RENDERER=1 pot")
-
     -- 空闲管理(自动锁屏/息屏, 见 hypridle.conf)
     hl.exec_cmd("hypridle")
 

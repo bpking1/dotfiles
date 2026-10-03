@@ -7,11 +7,6 @@ local mainMod  = "ALT"
 local terminal = "kitty"
 
 ------------------------------------
----- pot 翻译 / OCR ----
-------------------------------------
-hl.bind(mainMod .. " + X", hl.dsp.exec_cmd('grim -g "$(slurp)" ~/.cache/com.pot-app.desktop/pot_screenshot_cut.png && curl "127.0.0.1:60828/ocr_recognize?screenshot=false"'))
-hl.bind(mainMod .. " + C", hl.dsp.exec_cmd('grim -g "$(slurp)" ~/.cache/com.pot-app.desktop/pot_screenshot_cut.png && curl "127.0.0.1:60828/ocr_translate?screenshot=false"'))
-hl.bind(mainMod .. " + A", hl.dsp.exec_cmd('curl "127.0.0.1:60828/selection_translate"'))
 
 -- 剪贴板历史选择
 hl.bind(mainMod .. " + V", hl.dsp.exec_cmd("cliphist list | rofi -dmenu | cliphist decode | wl-copy"))

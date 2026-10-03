@@ -8,14 +8,6 @@ hl.window_rule({
     float = true,
 })
 
--- pot 翻译窗口浮动 + 跟随鼠标
-hl.window_rule({
-    name  = "pot-float",
-    match = { title = "^(Translator|Recognize|Translate|OCR|PopClip|Screenshot Translate)$" },
-    float = true,
-    move  = { "cursor_x", "cursor_y" },
-})
-
 -- 通用浮动小窗:靠左 1/4、垂直居中、960x540
 local function floatSmall(name, match)
     hl.window_rule({
