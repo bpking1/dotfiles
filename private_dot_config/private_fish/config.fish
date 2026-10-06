@@ -1,8 +1,12 @@
 if status is-interactive
     # Commands to run in interactive sessions can go here
 
-    # gpg 签名（git commit）时在当前终端弹出密码输入
-    set -gx GPG_TTY (tty)
+    # gpg 签名（git commit）/ chezmoi 解密时在当前终端弹出密码输入
+    # tmux 下 gpg-agent 会缓存旧 tty，须每个 prompt 刷新，否则 pinentry 卡住不弹窗
+    function __gpg_update_tty --on-event fish_prompt
+        set -gx GPG_TTY (tty)
+        gpg-connect-agent updatestartuptty /bye >/dev/null
+    end
 end
 # for nvidia driver tarui bug,setted in hyprland conf
 # set -x WEBKIT_DISABLE_DMABUF_RENDERER 1
