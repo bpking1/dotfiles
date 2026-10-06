@@ -8,7 +8,7 @@ app_install() {
   rm -rf "$HOME/plum"
   git clone --depth 1 https://github.com/rime/plum "$HOME/plum"
   (cd "$HOME/plum" && rime_dir="$RIME_DIR" bash rime-install iDvel/rime-ice)
-  (cd "$HOME/plum" && rime_dir="$RIME_DIR" bash rime-install iDvel/rime-ice:others/recipes/grammar:schema=rime_ice)
+  (cd "$HOME/plum" && rime_dir="$RIME_DIR" bash rime-install iDvel/rime-ice:others/recipes/grammar:schema=double_pinyin_flypy)
   (cd "$HOME/plum" && rime_dir="$RIME_DIR" bash rime-install iDvel/rime-ice:others/recipes/config:schema=double_pinyin_flypy)
   rm -rf "$HOME/plum"
 }

@@ -1,0 +1,44 @@
+# Rime table
+# coding: utf-8
+#@/db_name	custom_phrase_double.txt
+#@/db_type	tabledb
+#
+# 自定义短语（小鹤双拼版）
+# 编码需按小鹤双拼键位写：每字两键（声母键+韵母键），如 you=yz shi=ui mei=mw
+# 以 Tab 分割：词汇<Tab>编码<Tab>权重
+# version: "2026-10-06"
+#
+# 此行之后不能写注释
+
+有	yz	3
+又	yz	2
+由	yz	1
+
+一	yi	4
+以	yi	3
+已	yi	2
+亦	yi	1
+
+一个	yige
+有个	yzge
+是一个	uiyige
+有一个	yzyige
+有没有	yzmwyz
+又有	yzyz
+又又又	yzyzyz
+又双叒叕	yzulrovo
+
+go	go
+Golang	golang
+Hugo	hugo
+goto	goto
+domain	domain
+TODO	todo
+Dota	dota
+main	main
+Amazon	amazon
+NASA	nasa
+gone	gone
+Go程	gocheng
+code	code
+SOHO	soho

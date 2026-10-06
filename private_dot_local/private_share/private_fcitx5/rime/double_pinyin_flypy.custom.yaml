@@ -1,5 +1,5 @@
 __patch:
-# Rx: iDvel/rime-ice:others/recipes/grammar:schema=rime_ice {
+# Rx: iDvel/rime-ice:others/recipes/grammar:schema=double_pinyin_flypy {
   - patch/+:
       grammar:
         language: wanxiang-lts-zh-hans
