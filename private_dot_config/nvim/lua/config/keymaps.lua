@@ -45,41 +45,7 @@ map("n", "<C-Left>", "<cmd>vertical resize -2<cr>", { desc = "Decrease Window Wi
 map("n", "<C-Right>", "<cmd>vertical resize +2<cr>", { desc = "Increase Window Width" })
 
 
--- 7. Ctrl + \ 快捷键：在下方打开/切换终端 (Toggle Terminal)
-local term_buf = nil
-local term_win = nil
-
-local function toggle_terminal()
-  -- 如果终端窗口当前是打开且有效的，就关闭它
-  if term_win and vim.api.nvim_win_is_valid(term_win) then
-    vim.api.nvim_win_close(term_win, true)
-    term_win = nil
-  else
-    -- 在下方打开 12 行高度的分割窗口
-    vim.cmd("botright 12sp")
-    term_win = vim.api.nvim_get_current_win()
-    
-    -- 如果之前的终端 Buffer 还在，就复用它；否则新建一个
-    if term_buf and vim.api.nvim_buf_is_valid(term_buf) then
-      vim.api.nvim_win_set_buf(term_win, term_buf)
-    else
-      vim.cmd("terminal")
-      term_buf = vim.api.nvim_get_current_buf()
-      
-      -- 监听终端关闭事件，自动清理 Buffer 引用
-      vim.api.nvim_create_autocmd("TermClose", {
-        buffer = term_buf,
-        once = true,
-        callback = function()
-          term_buf = nil
-          term_win = nil
-        end,
-      })
-    end
-    -- 自动进入终端输入模式
-    vim.cmd("startinsert")
-  end
-end
-
--- 支持在 Normal 模式和 Terminal 模式下通过 Ctrl + \ 切换终端
-map({ "n", "t" }, "<C-_>", toggle_terminal, { desc = "Toggle Terminal", silent = true })
+-- 7. <C-_> 快捷键（多数终端对应 Ctrl + /）：在下方打开/切换持久化项目终端
+map({ "n", "t" }, "<C-_>", function()
+  require("config.terminal").toggle()
+end, { desc = "Toggle Terminal", silent = true })

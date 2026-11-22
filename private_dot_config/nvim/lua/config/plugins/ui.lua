@@ -38,12 +38,18 @@ function M.setup_later()
       { mode = "n", keys = "<leader>f", desc = "+find" },
       { mode = "n", keys = "<leader>m", desc = "+markdown" },
       { mode = "n", keys = "<leader>q", desc = "+quit" },
+      { mode = "n", keys = "<leader>u", desc = "+ui/toggle" },
     },
   })
 
   require("mini.statusline").setup({})
   require("mini.tabline").setup({})
-  require("mini.diff").setup({})
+  require("mini.diff").setup({
+    view = {
+      style = "sign",
+      priority = 5, -- 默认 199，避免覆盖 DAP 断点符号 (priority 10)
+    },
+  })
   require("mini.pairs").setup({})
 end
 
