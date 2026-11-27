@@ -1,17 +1,17 @@
 local M = {}
 
 function M.setup()
-  local add = MiniDeps.add
   local map = vim.keymap.set
 
-  add({ source = "ibhagwan/fzf-lua" })
+  require("config.pack").packadd("fzf-lua")
   require("fzf-lua").setup({
-      files = {
-          follow = true,
-      },
-      grep = {
-          follow = true,
-      },
+    fzf_colors = true,
+    files = {
+      follow = true,
+    },
+    grep = {
+      follow = true,
+    },
   })
   require("fzf-lua").register_ui_select()
 
@@ -20,6 +20,7 @@ function M.setup()
   map("n", "<leader>/", "<cmd>FzfLua live_grep<cr>", { desc = "Live grep (FzfLua)" })
   map("n", "<leader>fb", "<cmd>FzfLua buffers<cr>", { desc = "Find buffers (FzfLua)" })
   map("n", "<leader>fh", "<cmd>FzfLua help_tags<cr>", { desc = "Find help tags (FzfLua)" })
+  map("n", "<leader>sk", "<cmd>FzfLua keymaps<cr>", { desc = "Search keymaps (FzfLua)" })
 end
 
 return M

@@ -7,7 +7,7 @@ function M.setup_lazy()
     if loaded then return require("dap") end
     loaded = true
 
-    MiniDeps.add({ source = "mfussenegger/nvim-dap" })
+    require("config.pack").packadd("nvim-dap")
     local dap = require("dap")
     dap.adapters.coreclr = {
       type = "executable",
@@ -37,6 +37,9 @@ function M.setup_lazy()
   vim.keymap.set("n", "<F5>", function()
     load().continue()
   end, { desc = "调试: 启动/继续" })
+  vim.keymap.set("n", "<F9>", function()
+    load().toggle_breakpoint()
+  end, { desc = "调试: 切换断点" })
 end
 
 return M

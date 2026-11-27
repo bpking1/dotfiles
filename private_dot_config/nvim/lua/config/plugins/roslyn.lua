@@ -9,7 +9,7 @@ function M.setup_lazy()
       if loaded then return end
       loaded = true
 
-      MiniDeps.add({ source = "seblyng/roslyn.nvim" })
+      require("config.pack").packadd("roslyn.nvim")
       require("roslyn").setup({})
     end,
   })

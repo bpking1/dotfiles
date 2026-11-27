@@ -29,7 +29,8 @@ opt.smartindent = true      -- 智能缩进
 -- --- 搜索设置 ---
 opt.ignorecase = true       -- 搜索时忽略大小写
 opt.smartcase = true        -- 搜索包含大写字母时区分大小写
-opt.hlsearch = false        -- 默认不持久高亮上一次搜索结果
+opt.hlsearch = true         -- 搜索时高亮匹配项，配合内置 nohlsearch 包自动取消高亮
+vim.cmd("packadd! nohlsearch")
 
 -- --- 系统与剪贴板 ---
 opt.mouse = "a"             -- 启用鼠标支持
@@ -58,10 +59,12 @@ vim.g.netrw_liststyle = 3       -- 树状目录结构
 vim.g.netrw_browse_split = 4    -- 在上一次光标所在的窗口打开选中的文件
 vim.g.netrw_altv = 1            -- 分屏时垂直分割在右侧
 vim.g.netrw_winsize = 25        -- 侧边栏文件树宽度占 25%
--- --- 代码折叠设置 (方案 A：使用缩进折叠，免除 Treesitter 编译依赖) ---
-opt.foldmethod = "indent"       -- 基于缩进自动折叠
+-- --- 代码折叠设置（默认缩进折叠兜底，LSP 支持 foldingRange 时在 LspAttach 中自动切换为原生 LSP 折叠）---
+opt.foldmethod = "indent"       -- 无 LSP 时基于缩进自动折叠
 opt.foldlevel = 99              -- 打开文件时默认展开所有代码
+opt.foldlevelstart = 99         -- 打开新缓冲区时默认全部展开
 opt.foldenable = true           -- 启用折叠功能
+opt.foldtext = ""               -- 使用 Neovim 原生透明语法高亮折叠行
 
 -- --- 外部修改自动实时重载与通知 ---
 local reload_group = vim.api.nvim_create_augroup("AutoReloadFiles", { clear = true })

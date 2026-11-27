@@ -7,7 +7,7 @@ function M.setup_lazy()
     if loaded then return end
     loaded = true
 
-    MiniDeps.add({ source = "folke/sidekick.nvim" })
+    require("config.pack").packadd("sidekick.nvim")
     require("sidekick").setup({
       picker = "fzf-lua",
       cli = {

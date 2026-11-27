@@ -1,51 +1,86 @@
--- 引导并初始化 mini.deps
-local path_package = vim.fn.stdpath("data") .. "/site/pack/deps/start/mini.deps"
-if not (vim.uv or vim.loop).fs_stat(path_package) then
-  vim.api.nvim_echo({ { "正在下载 mini.deps 插件管理器，请稍后...", "InfoMsg" } }, true, {})
-  local out = vim.fn.system({
-    "git",
-    "clone",
-    "--filter=blob:none",
-    "https://github.com/echasnovski/mini.deps",
-    path_package,
-  })
-  if vim.v.shell_error ~= 0 then
-    vim.api.nvim_echo({
-      { "克隆 mini.deps 失败：\n", "ErrorMsg" },
-      { out, "WarningMsg" },
-    }, true, {})
-    return
-  end
+-- 必须在首次 vim.pack.add() 之前注册 PackChanged，确保首次安装或从锁文件恢复时也能触发构建钩子
+vim.api.nvim_create_autocmd("PackChanged", {
+  group = vim.api.nvim_create_augroup("UserPackHooks", { clear = true }),
+  callback = function(ev)
+    local name, kind = ev.data.spec.name, ev.data.kind
+    if name == "markdown-preview.nvim" and (kind == "install" or kind == "update") then
+      local result = vim.system({ "npm", "install" }, {
+        cwd = ev.data.path .. "/app",
+        text = true,
+      }):wait()
+
+      if result.code ~= 0 then
+        vim.notify(
+          "markdown-preview.nvim npm install 失败:\n" .. (result.stderr or ""),
+          vim.log.levels.ERROR
+        )
+      end
+    end
+  end,
+})
+
+local pack = require("config.pack")
+pack.setup_commands()
+
+local function gh(repo)
+  return "https://github.com/" .. repo
 end
 
-vim.opt.runtimepath:prepend(path_package) -- 首次克隆后立即加入 rtp,无需重启
-require("mini.deps").setup({})
+-- 1. 首屏必需插件：立即加载
+vim.pack.add({
+  gh("folke/tokyonight.nvim"),
+  gh("nvim-mini/mini.nvim"),
+}, { confirm = false })
 
-local now, later = MiniDeps.now, MiniDeps.later
+-- 2. 延迟/按需插件：统一并发安装并写入锁文件，通过空 load 函数延迟到实际使用时再 packadd
+vim.pack.add({
+  -- 延迟加载阶段使用
+  gh("ibhagwan/fzf-lua"),
+  gh("folke/flash.nvim"),
+  gh("stevearc/quicker.nvim"),
+  gh("rafamadriz/friendly-snippets"),
+  { src = gh("saghen/blink.cmp"), version = "v1.10.2" },
+  gh("mason-org/mason.nvim"),
+  gh("WhoIsSethDaniel/mason-tool-installer.nvim"),
+  gh("nvim-tree/nvim-web-devicons"),
+  gh("nvim-lua/plenary.nvim"),
+  gh("MunifTanjim/nui.nvim"),
+  { src = gh("nvim-neo-tree/neo-tree.nvim"), version = "v3.x" },
+  -- 触发事件/快捷键时按需加载
+  gh("nvim-treesitter/nvim-treesitter"),
+  gh("MeanderingProgrammer/render-markdown.nvim"),
+  gh("iamcco/markdown-preview.nvim"),
+  gh("seblyng/roslyn.nvim"),
+  gh("mfussenegger/nvim-dap"),
+  gh("folke/sidekick.nvim"),
+  gh("sindrets/diffview.nvim"),
+}, {
+  confirm = false,
+  load = function() end,
+})
 
--- 首屏所需插件必须立即加载。
-now(function()
-  require("config.plugins.ui").setup_now()
-end)
+-- 首屏界面必须立即初始化
+require("config.plugins.ui").setup_now()
 
--- 注册真正按需加载的文件类型事件与快捷键，不在启动时加载插件。
+-- 注册按文件类型或快捷键按需触发的懒加载模块
 require("config.plugins.markdown").setup_lazy()
 require("config.plugins.roslyn").setup_lazy()
 require("config.plugins.dap").setup_lazy()
 require("config.plugins.sidekick").setup_lazy()
+require("config.plugins.git").setup_lazy()
 
--- 保持原有的延迟加载顺序，具体配置按功能拆分到独立文件。
-later(function()
+-- 保持既定的顺序延迟加载，确保 ui.setup_later() 先于 englishcd.setup() 执行
+pack.later(function()
   require("config.plugins.finder").setup()
   require("config.plugins.ui").setup_later()
   require("config.plugins.editor").setup()
   require("config.plugins.englishcd").setup()
 end)
 
-later(function()
+pack.later(function()
   require("config.plugins.lsp").setup()
 end)
 
-later(function()
+pack.later(function()
   require("config.plugins.files").setup()
 end)

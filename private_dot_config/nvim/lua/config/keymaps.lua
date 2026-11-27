@@ -49,3 +49,11 @@ map("n", "<C-Right>", "<cmd>vertical resize +2<cr>", { desc = "Increase Window W
 map({ "n", "t" }, "<C-_>", function()
   require("config.terminal").toggle()
 end, { desc = "Toggle Terminal", silent = true })
+
+-- 8. 终端模式退出与跨窗口跳转
+-- 使用 <Esc><Esc> 避免抢占 agy/fzf 等 TUI 的单 <Esc>；使用 <A-h/j/k/l> 避免与终端 <C-w>/<C-l> 冲突
+map("t", "<Esc><Esc>", [[<C-\><C-n>]], { desc = "Exit Terminal Mode" })
+map("t", "<A-h>", [[<C-\><C-n><C-w>h]], { desc = "Go to Left Window (Terminal)" })
+map("t", "<A-j>", [[<C-\><C-n><C-w>j]], { desc = "Go to Lower Window (Terminal)" })
+map("t", "<A-k>", [[<C-\><C-n><C-w>k]], { desc = "Go to Upper Window (Terminal)" })
+map("t", "<A-l>", [[<C-\><C-n><C-w>l]], { desc = "Go to Right Window (Terminal)" })

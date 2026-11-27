@@ -1,11 +1,12 @@
 local M = {}
 
 function M.setup()
-  local add = MiniDeps.add
-  add({ source = "nvim-tree/nvim-web-devicons" })
-  add({ source = "nvim-lua/plenary.nvim" })
-  add({ source = "MunifTanjim/nui.nvim" })
-  add({ source = "nvim-neo-tree/neo-tree.nvim", checkout = "v3.x" })
+  require("config.pack").packadd({
+    "nvim-web-devicons",
+    "plenary.nvim",
+    "nui.nvim",
+    "neo-tree.nvim",
+  })
 
   require("neo-tree").setup({
     close_if_last_window = true,

@@ -1,8 +1,7 @@
 local M = {}
 
 function M.setup()
-  local add = MiniDeps.add
-  add({ source = "folke/flash.nvim" })
+  require("config.pack").packadd({ "flash.nvim", "quicker.nvim" })
 
   local flash = require("flash")
   flash.setup({
@@ -13,6 +12,12 @@ function M.setup()
   vim.keymap.set({ "n", "x", "o" }, "s", function()
     flash.jump()
   end, { desc = "Flash Jump" })
+
+  local quicker = require("quicker")
+  quicker.setup({})
+  vim.keymap.set("n", "<leader>uq", function()
+    quicker.toggle()
+  end, { desc = "Toggle Quickfix (Quicker)" })
 end
 
 return M

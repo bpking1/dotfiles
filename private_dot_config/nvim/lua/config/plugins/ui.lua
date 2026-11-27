@@ -1,12 +1,7 @@
 local M = {}
 
 function M.setup_now()
-  local add = MiniDeps.add
-
-  add({ source = "folke/tokyonight.nvim" })
   vim.cmd("colorscheme tokyonight-storm")
-
-  add({ source = "echasnovski/mini.nvim" })
   require("mini.starter").setup({})
 end
 
@@ -34,10 +29,17 @@ function M.setup_later()
       miniclue.gen_clues.registers(),
       miniclue.gen_clues.windows(),
       miniclue.gen_clues.z(),
+      { mode = "n", keys = "<leader>a", desc = "+ai/sidekick" },
+      { mode = "x", keys = "<leader>a", desc = "+ai/sidekick" },
       { mode = "n", keys = "<leader>b", desc = "+buffer" },
+      { mode = "n", keys = "<leader>c", desc = "+code" },
+      { mode = "x", keys = "<leader>c", desc = "+code" },
       { mode = "n", keys = "<leader>f", desc = "+find" },
+      { mode = "n", keys = "<leader>g", desc = "+git" },
       { mode = "n", keys = "<leader>m", desc = "+markdown" },
       { mode = "n", keys = "<leader>q", desc = "+quit" },
+      { mode = "n", keys = "<leader>r", desc = "+refactor" },
+      { mode = "n", keys = "<leader>s", desc = "+search/symbols" },
       { mode = "n", keys = "<leader>u", desc = "+ui/toggle" },
     },
   })
@@ -50,6 +52,10 @@ function M.setup_later()
       priority = 5, -- 默认 199，避免覆盖 DAP 断点符号 (priority 10)
     },
   })
+  vim.keymap.set("n", "<leader>ud", function()
+    require("mini.diff").toggle_overlay(0)
+  end, { desc = "Toggle Git Diff Overlay" })
+
   require("mini.pairs").setup({})
 end
 

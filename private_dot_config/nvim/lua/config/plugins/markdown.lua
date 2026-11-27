@@ -1,41 +1,24 @@
 local M = {}
 
 function M.setup_lazy()
-  local add = MiniDeps.add
   local loaded = false
 
   local function load()
     if loaded then return end
     loaded = true
 
-    add({ source = "nvim-treesitter/nvim-treesitter" })
-    add({ source = "MeanderingProgrammer/render-markdown.nvim" })
-    require("render-markdown").setup({ file_types = { "markdown" } })
-
+    -- 在 packadd 之前设置全局选项，确保 plugin/mkdp.vim 加载时读到最新配置
     vim.g.mkdp_auto_start = 0
     vim.g.mkdp_auto_close = 1
     vim.g.mkdp_echo_preview_url = 1
     vim.g.mkdp_filetypes = { "markdown" }
 
-    local install_markdown_preview = function(plugin)
-      local result = vim.system({ "npm", "install" }, {
-        cwd = plugin.path .. "/app",
-        text = true,
-      }):wait()
-
-      if result.code ~= 0 then
-        error("markdown-preview.nvim npm install failed: " .. result.stderr)
-      end
-    end
-
-    add({
-      source = "iamcco/markdown-preview.nvim",
-      hooks = {
-        post_install = install_markdown_preview,
-        post_checkout = install_markdown_preview,
-      },
+    require("config.pack").packadd({
+      "nvim-treesitter",
+      "render-markdown.nvim",
+      "markdown-preview.nvim",
     })
-    vim.cmd("runtime! plugin/mkdp.vim")
+    require("render-markdown").setup({ file_types = { "markdown" } })
   end
 
   vim.api.nvim_create_autocmd("FileType", {
@@ -44,9 +27,13 @@ function M.setup_lazy()
     callback = function()
       local was_loaded = loaded
       load()
-      -- markdown-preview.nvim 的命令在 FileType 时创建；插件刚加载时补发事件。
+      -- markdown-preview.nvim 的命令在 mkdp_init 组的 FileType 时创建；仅对该组补发事件避免重复触发 ftplugin
       if not was_loaded then
-        vim.api.nvim_exec_autocmds("FileType", { pattern = "markdown", modeline = false })
+        pcall(vim.api.nvim_exec_autocmds, "FileType", {
+          group = "mkdp_init",
+          pattern = "markdown",
+          modeline = false,
+        })
       end
     end,
   })

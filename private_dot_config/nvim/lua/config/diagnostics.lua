@@ -29,6 +29,16 @@ if vim.lsp.document_color and vim.lsp.document_color.enable then
   vim.lsp.document_color.enable(true, nil, { style = "virtual" })
 end
 
+-- 启用原生行内类型提示（Inlay Hints）
+if vim.lsp.inlay_hint and vim.lsp.inlay_hint.enable then
+  vim.lsp.inlay_hint.enable(true)
+  vim.keymap.set("n", "<leader>uh", function()
+    local enabled = vim.lsp.inlay_hint.is_enabled()
+    vim.lsp.inlay_hint.enable(not enabled)
+    vim.notify("行内类型提示 (Inlay Hints): " .. (not enabled and "开启" or "关闭"))
+  end, { desc = "Toggle Inlay Hints", noremap = true })
+end
+
 -- 切换诊断行内虚拟文本显示
 vim.keymap.set("n", "<leader>uv", function()
   virtual_text_on = not virtual_text_on
